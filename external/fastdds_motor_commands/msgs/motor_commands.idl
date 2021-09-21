@@ -1,7 +1,0 @@
-struct motor_comands
-{
-	unsigned long index;
-
-	float motor_command[4];
-
-};

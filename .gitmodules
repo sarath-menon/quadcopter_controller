@@ -1,6 +1,0 @@
-[submodule "external/PX4-Matrix"]
-	path = external/PX4-Matrix
-	url = https://github.com/PX4/PX4-Matrix.git
-[submodule "external/fastdds_motor_commands"]
-	path = external/fastdds_motor_commands
-	url = https://github.com/sarath-menon/fastdds_motor_commands.git
