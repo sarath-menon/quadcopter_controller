@@ -4,3 +4,6 @@
 [submodule "external/PX4-Matrix"]
 	path = external/PX4-Matrix
 	url = https://github.com/PX4/PX4-Matrix.git
+[submodule "external/fastdds_mocap"]
+	path = external/fastdds_mocap
+	url = https://github.com/sarath-menon/fastdds_mocap.git
