@@ -11,7 +11,7 @@ find_package(fastrtps REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 
 include_directories(external/PX4-Matrix)
-
+include_directories(external/math_helper)
 
 add_subdirectory(project)
 add_subdirectory(controller)

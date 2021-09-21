@@ -1,2 +1,2 @@
-add_subdirectory(mahi-gui)
+add_subdirectory(fastdds_motor_commands)
 add_subdirectory(fastdds_mocap)

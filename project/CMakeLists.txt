@@ -1,15 +1,13 @@
 
 
-add_executable(quad_2d
+add_executable(quad_controller
 main.cpp
 )
 
-target_include_directories(quad_2d PRIVATE include)
+target_include_directories(quad_controller PRIVATE include)
 
-target_link_libraries(quad_2d PRIVATE
-model_lib
+target_link_libraries(quad_controller PRIVATE
 controller_lib
-mahi::gui
 yaml-cpp
 fastcdr 
 fastrtps
