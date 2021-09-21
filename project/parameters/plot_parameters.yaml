@@ -1,0 +1,14 @@
+# Plot Parameters:
+
+# To enable plotting
+plot_flag: true
+# To show the plot
+altitude_plot: true
+
+translation_plot: true
+
+thrust_plot: true
+
+torque_plot: false
+
+roll_angle_plot: true
