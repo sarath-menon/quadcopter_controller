@@ -1,7 +1,7 @@
 
 add_library(controller_lib STATIC
 src/pid_cascaded.cpp
-src/pid_controllers.cpp
+src/set_gains.cpp
 )
 
 target_include_directories(controller_lib PUBLIC include)

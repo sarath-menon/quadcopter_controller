@@ -14,5 +14,5 @@ include_directories(external/PX4-Matrix)
 include_directories(external/math_helper)
 
 add_subdirectory(project)
-add_subdirectory(controller)
+add_subdirectory(controller_lib)
 add_subdirectory(external)
