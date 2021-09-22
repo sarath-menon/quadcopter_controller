@@ -37,6 +37,9 @@ int main() {
   constexpr static float thrust_max = 25;
   constexpr static float thrust_min = 7;
   constexpr static float dt = 0.01;
+  const float k_f = 6.11 * exp(-8);
+  const float arm_length = 0.171;
+  float motor_commands[4] = {0, 0, 0, 0};
 
   for (;;) {
 
@@ -54,10 +57,17 @@ int main() {
       // const float torque_command =
       //     controller.attitude_controller(quad, attitude_command, dt);
 
+      const float torque_command = 0;
+
+      // Convert thrust, torque to motor speeds
+      motor_mixing(motor_commands, thrust_command, torque_command, k_f,
+                   arm_length);
+
       // Set flag to false after data has been processed
       subscriber::new_data = false;
 
-      std::cout << "Thrust command:" << thrust_command;
+      std::cout << "Index:" << subscriber::index << '\n';
+      std::cout << "Thrust command:" << thrust_command << '\n';
     }
   }
 }
@@ -80,7 +90,7 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
       // std::cout << "Object Name:" << st.object_name() << std::endl;
 
       object_name = st.object_name();
-      frame_number = st.index();
+      index = st.index();
 
       position[0] = st.position().at(0);
       position[1] = st.position().at(1);
