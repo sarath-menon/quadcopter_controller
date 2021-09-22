@@ -79,7 +79,8 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
 
       latency = st.delay();
 
-      // Sleep for 500 microseconds
+      // Sleep for 1 millisecond
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   }
 }
