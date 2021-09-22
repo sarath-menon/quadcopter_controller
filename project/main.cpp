@@ -29,21 +29,35 @@ int main() {
   subscriber::mocap_quadcopterSubscriber mysub;
   mysub.init();
 
+  // Initialize cascaded pid controller
+  PidCascadedController controller;
+
+  // Initialize for now
+  constexpr static float z_position_target = 5;
+  constexpr static float thrust_max = 25;
+  constexpr static float thrust_min = 7;
+  constexpr static float dt = 0.01;
+
   for (;;) {
 
     if (subscriber::new_data == true) {
-      std::cout << "Position      :" << subscriber::position[0] << '\t'
-                << subscriber::position[1] << '\t' << subscriber::position[2]
-                << std::endl;
 
-      std::cout << "Orientation:" << subscriber::orientation[0] << '\t'
-                << subscriber::orientation[1] << '\t'
-                << subscriber::orientation[2] << '\t'
-                << subscriber::orientation[3] << std::endl
-                << std::endl;
+      // Outer loop
+      const float thrust_command = controller.z_position_controller(
+          z_position_target, subscriber::position[2], thrust_max, thrust_min,
+          dt);
+
+      // const float attitude_command =
+      //     controller.horizontal_controller(quad, horizontal_target, dt);
+
+      // // Inner loop
+      // const float torque_command =
+      //     controller.attitude_controller(quad, attitude_command, dt);
 
       // Set flag to false after data has been processed
       subscriber::new_data = false;
+
+      std::cout << "Thrust command:" << thrust_command;
     }
   }
 }

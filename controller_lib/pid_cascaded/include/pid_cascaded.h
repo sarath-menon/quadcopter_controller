@@ -32,28 +32,6 @@ protected:
   // Feedforward thrust
   constexpr static float ff_thrust = 9.81;
 
-protected:
-  // x position pid variables
-  static float e_i__x;
-  static float e_d__x;
-  static float e_prev__x;
-  // y position pid variables
-  static float e_i__y;
-  static float e_d__y;
-  static float e_prev__y;
-  // z position pid variables
-  static float e_i__z;
-  static float e_d__z;
-  static float e_prev__z;
-  // roll angle pid variables
-  static float e_i__roll;
-  static float e_d__roll;
-  static float e_prev__roll;
-  // pitch angle pid variables
-  static float e_i__pitch;
-  static float e_d__pitch;
-  static float e_prev__pitch;
-
 public:
   // Positon controllers
   float x_position_controller(const float x_position_target,

@@ -4,6 +4,11 @@ float PidCascadedController::x_position_controller(
     const float x_position_target, const float x_position_now,
     const float roll_angle_max, const float roll_angle_min, const float dt) {
 
+  // x position pid variables
+  static float e_i__x = 0;
+  static float e_d__x = 0;
+  static float e_prev__x = 0;
+
   // Compute error
   const float error = x_position_target - x_position_now;
 
@@ -22,6 +27,11 @@ float PidCascadedController::z_position_controller(
     const float z_position_target, const float z_position_now,
     const float thrust_max, const float thrust_min, const float dt) {
 
+  // y position pid variables
+  static float e_i__z = 0;
+  static float e_d__z = 0;
+  static float e_prev__z = 0;
+
   // Compute error
   const float error = z_position_target - z_position_now;
 
@@ -39,12 +49,17 @@ float PidCascadedController::roll_angle_controller(
     const float roll_angle_target, const float roll_angle_now,
     const float roll_torque_max, const float roll_torque_min, const float dt) {
 
+  // x position pid variables
+  static float e_i__roll = 0;
+  static float e_d__roll = 0;
+  static float e_prev__roll = 0;
+
   // Compute error
   const float error = roll_angle_target - roll_angle_now;
 
   // Compute control input
   float roll_torque_command = pid(error, k_p__roll, k_i__roll, k_d__roll, dt,
-                                  e_i__z, e_d__z, e_prev__z);
+                                  e_i__roll, e_d__roll, e_prev__roll);
 
   // Limit roll angle to near zero to respect linearization
   roll_torque_command =
