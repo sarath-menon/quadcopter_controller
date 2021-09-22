@@ -8,8 +8,6 @@
 
 // Fastdds Headers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#include <fastdds/dds/subscriber/DataReader.hpp>
-#include <fastdds/dds/subscriber/SampleInfo.hpp>
 // Mocap data subscriber
 #include "mocap_quadcopterPubSubTypes.h"
 #include "mocap_quadcopterSubscriber.h"
@@ -51,7 +49,6 @@ int main() {
 }
 
 namespace subscriber {
-
 void mocap_quadcopterSubscriber::SubListener::on_data_available(
     eprosima::fastdds::dds::DataReader *reader) {
   // Take data
@@ -86,4 +83,5 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
     }
   }
 }
+
 } // namespace subscriber
