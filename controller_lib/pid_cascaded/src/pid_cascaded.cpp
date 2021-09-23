@@ -37,6 +37,8 @@ float PidCascadedController::z_position_controller(
   const float error = z_position_target - z_position_now;
 
   std::cout << "Altitude error:" << error << '\n';
+  std::cout << "error values :" << e_i__z << '\t' << e_d__z << '\t' << e_prev__z
+            << '\n';
 
   // Compute control input
   float thrust_command =
