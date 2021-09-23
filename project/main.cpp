@@ -4,6 +4,7 @@ int main() {
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
+  motor_command_pub.init();
   motor_comands msg;
   bool fastdds_flag = false;
 
@@ -47,7 +48,7 @@ int main() {
 
       msg.motor_command({motor_commands[0], motor_commands[1],
                          motor_commands[2], motor_commands[3]});
-      // Publish motor command msg
+      // // Publish motor command msg
       motor_command_pub.run(msg);
 
       // Set flag to false after data has been processed
