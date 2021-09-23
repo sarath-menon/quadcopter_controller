@@ -1,4 +1,5 @@
 #include "pid_cascaded.h"
+#include <iostream>
 
 float PidCascadedController::x_position_controller(
     const float x_position_target, const float x_position_now,
@@ -35,10 +36,13 @@ float PidCascadedController::z_position_controller(
   // Compute error
   const float error = z_position_target - z_position_now;
 
+  std::cout << "Altitude error:" << error << '\n';
+
   // Compute control input
   float thrust_command =
       pid(error, k_p__z, k_i__z, k_d__z, dt, e_i__z, e_d__z, e_prev__z);
 
+  std::cout << "Raw thrust command:" << thrust_command << '\n';
   // Limit roll angle to near zero to respect linearization
   thrust_command = limit(ff_thrust + thrust_command, thrust_max, thrust_min);
 

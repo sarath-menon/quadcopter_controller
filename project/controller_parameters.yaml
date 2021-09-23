@@ -10,7 +10,12 @@ k_p__x: 7
 k_i__x: 0
 k_d__x: 3
 
-# Angle PID Gains
-k_p__b: 3.1
-k_i__b: 0
-k_d__b: 0.22
+# Roll controller PID Gains
+k_p__roll: 3.1
+k_i__roll: 0
+k_d__roll: 0.22
+
+# Pitch controller PID Gains
+k_p__pitch: 3.1
+k_i__pitch: 0
+k_d__pitch: 0.22

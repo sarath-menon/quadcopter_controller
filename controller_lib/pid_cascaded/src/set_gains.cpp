@@ -2,18 +2,17 @@
 
 void PidCascadedController::set_gains(std::string path) {
   // Load yaml file containing gains
-  YAML::Node controller_yaml =
-      YAML::LoadFile("controller/pid_cascaded/controller_parameters.yaml");
+  YAML::Node controller_yaml = YAML::LoadFile(path);
 
   // x position controller gains
   k_p__x = controller_yaml["k_p__x"].as<float>(); // [constant]
   k_i__x = controller_yaml["k_i__x"].as<float>(); // [constant]
   k_d__x = controller_yaml["k_d__x"].as<float>(); // [constant]
 
-  // y position controller gains
-  k_p__y = controller_yaml["k_p__y"].as<float>(); // [constant]
-  k_i__y = controller_yaml["k_i__y"].as<float>(); // [constant]
-  k_d__y = controller_yaml["k_d__y"].as<float>(); // [constant]
+  // // y position controller gains
+  // k_p__y = controller_yaml["k_p__y"].as<float>(); // [constant]
+  // k_i__y = controller_yaml["k_i__y"].as<float>(); // [constant]
+  // k_d__y = controller_yaml["k_d__y"].as<float>(); // [constant]
 
   // z position controller gains
   k_p__z = controller_yaml["k_p__z"].as<float>(); // [constant]

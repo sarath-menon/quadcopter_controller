@@ -14,6 +14,7 @@ int main() {
 
   // Initialize cascaded pid controller
   PidCascadedController controller;
+  controller.set_gains("project/controller_parameters.yaml");
 
   // Initialize for now
   constexpr static float z_position_target = 5;
@@ -56,7 +57,14 @@ int main() {
 
       std::cout << "Index:" << subscriber::index << '\n';
       std::cout << "Thrust command:" << thrust_command << '\n';
-      std::cout << "position:" << subscriber::position[2] << '\n';
+      std::cout << "Position:" << subscriber::position[0] << '\t'
+                << subscriber::position[1] << '\t' << subscriber::position[2]
+                << '\n';
+      std::cout << "Motor commands:" << motor_commands[0] << '\t'
+                << motor_commands[1] << '\t' << motor_commands[2] << '\t'
+                << motor_commands[3] << '\t' << std::endl;
+
+      std::cout << std::endl;
     }
   }
 }
