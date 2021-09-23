@@ -1,8 +1,7 @@
-#pragma once
+#include "basic_controllers.h"
 
-constexpr static float pid(const float e, const float k_p, const float k_i,
-                           const float k_d, const float dt, float &e_i,
-                           float &e_d, float &e_prev) {
+float pid(const float e, const float k_p, const float k_i, const float k_d,
+          const float dt, float &e_i, float &e_d, float &e_prev) {
 
   // Update derivative and integral errors
   e_i += e;

@@ -13,6 +13,6 @@ find_package(yaml-cpp CONFIG REQUIRED)
 include_directories(external/PX4-Matrix)
 include_directories(external/math_helper)
 
-add_subdirectory(project)
+add_subdirectory(cascaded_controller_app)
 add_subdirectory(controller_lib)
 add_subdirectory(external)

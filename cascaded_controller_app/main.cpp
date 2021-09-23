@@ -14,7 +14,8 @@ int main() {
 
   // Initialize cascaded pid controller
   PidCascadedController controller;
-  controller.set_gains("project/controller_parameters.yaml");
+  controller.set_gains(
+      "cascaded_controller_app/parameters/controller_parameters.yaml");
 
   // Initialize for now
   constexpr static float z_position_target = 5;
