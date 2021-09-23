@@ -24,9 +24,9 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
       object_name = st.object_name();
       index = st.index();
 
-      position[0] = st.position().at(0);
-      position[1] = st.position().at(1);
-      position[2] = st.position().at(2);
+      position[0] = st.position().at(0) / 1000;
+      position[1] = st.position().at(1) / 1000;
+      position[2] = st.position().at(2) / 1000;
 
       orientation[0] = st.orientation_quaternion().at(0);
       orientation[1] = st.orientation_quaternion().at(1);

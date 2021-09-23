@@ -1,29 +1,10 @@
-// #include "pid.h"
-#include "mocap_subscriber_callback.h"
-#include "motor_mixing.h"
-#include "pid_cascaded.h"
-#include <chrono>
-#include <iostream>
-#include <math.h>
-#include <math_helper.h>
-
-// Fastdds Headers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// Mocap data subscriber
-#include "mocap_quadcopterPubSubTypes.h"
-#include "mocap_quadcopterSubscriber.h"
-// Motor commands publisher
-#include "motor_commandsPubSubTypes.h"
-#include "motor_commandsPublisher.h"
-/////////////////////////////////////////////////////////////////////////////////
-
-// Px4 math header
-#include "matrix/math.hpp"
+#include "include_helper.h"
 
 int main() {
 
-  // Initialize motor commands subscriber
+  // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
+  motor_comands msg;
   bool fastdds_flag = false;
 
   // Initialize mocap data subscriber
@@ -63,6 +44,11 @@ int main() {
       // Convert thrust, torque to motor speeds
       motor_mixing(motor_commands, thrust_command, torque_command, k_f,
                    arm_length);
+
+      msg.motor_command({motor_commands[0], motor_commands[1],
+                         motor_commands[2], motor_commands[3]});
+      // Publish motor command msg
+      motor_command_pub.run(msg);
 
       // Set flag to false after data has been processed
       subscriber::new_data = false;
