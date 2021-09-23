@@ -1,7 +1,7 @@
 
 
 add_executable(quad_controller
-main.cpp
+src/main.cpp
 )
 
 target_include_directories(quad_controller PRIVATE include)
