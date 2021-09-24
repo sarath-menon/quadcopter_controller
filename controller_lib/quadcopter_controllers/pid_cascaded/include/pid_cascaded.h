@@ -29,29 +29,35 @@ protected:
   float k_i__pitch = 0; // [constant]
   float k_d__pitch = 0; // [constant]
 
+  // Simulation timestep
+  float dt = 0;
+
   // Feedforward thrust
   constexpr static float ff_thrust = 9.81;
+
+protected:
+  // Quadcopter properties
+  float thrust_max = 0;
+  float thrust_min = 0;
 
 public:
   // Positon controllers
   float x_position_controller(const float x_position_target,
                               const float x_position_now,
                               const float roll_angle_max,
-                              const float roll_angle_min, const float dt);
+                              const float roll_angle_min);
   // float y_position_controller(const float y_position_target,
   //                             const float y_position_now,
   //                             const float pitch_angle_max,
   //                             const float pitch_angle_min, const float dt);
   float z_position_controller(const float z_position_target,
-                              const float z_position_now,
-                              const float thrust_max, const float thrust_min,
-                              const float dt);
+                              const float z_position_now);
 
   // Attitude controller
   float roll_angle_controller(const float roll_angle_target,
                               const float roll_angle_now,
                               const float roll_torque_max,
-                              const float roll_torque_min, const float dt);
+                              const float roll_torque_min);
   // float pitch_angle_controller(const float pitch_angle_target,
   //                              const float pitch_angle_now,
   //                              const float pitch_torque_max,
@@ -64,4 +70,6 @@ public:
 public:
   // To load gain vaules from yaml file
   void set_gains(std::string path);
+  // To load quadcopter properties from yaml file
+  void set_quad_properties(std::string path);
 };

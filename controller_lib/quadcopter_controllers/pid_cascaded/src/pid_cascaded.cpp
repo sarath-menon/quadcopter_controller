@@ -3,7 +3,7 @@
 
 float PidCascadedController::x_position_controller(
     const float x_position_target, const float x_position_now,
-    const float roll_angle_max, const float roll_angle_min, const float dt) {
+    const float roll_angle_max, const float roll_angle_min) {
 
   // x position pid variables
   static float e_i__x = 0;
@@ -25,8 +25,7 @@ float PidCascadedController::x_position_controller(
 };
 
 float PidCascadedController::z_position_controller(
-    const float z_position_target, const float z_position_now,
-    const float thrust_max, const float thrust_min, const float dt) {
+    const float z_position_target, const float z_position_now) {
 
   // y position pid variables
   static float e_i__z = 0;
@@ -53,7 +52,7 @@ float PidCascadedController::z_position_controller(
 
 float PidCascadedController::roll_angle_controller(
     const float roll_angle_target, const float roll_angle_now,
-    const float roll_torque_max, const float roll_torque_min, const float dt) {
+    const float roll_torque_max, const float roll_torque_min) {
 
   // x position pid variables
   static float e_i__roll = 0;

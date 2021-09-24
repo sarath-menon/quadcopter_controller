@@ -19,3 +19,6 @@ k_d__roll: 0.22
 k_p__pitch: 3.1
 k_i__pitch: 0
 k_d__pitch: 0.22
+
+# Simulation timestep
+dt: 0.01

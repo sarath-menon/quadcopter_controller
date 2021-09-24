@@ -1,4 +1,5 @@
 #include "include_helper.h"
+#include "set_values.h"
 
 int main() {
 
@@ -16,12 +17,12 @@ int main() {
   PidCascadedController controller;
   controller.set_gains(
       "cascaded_controller_app/parameters/controller_parameters.yaml");
+  controller.set_quad_properties(
+      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
 
   // Initialize for now
-  constexpr static float z_position_target = 5;
-  constexpr static float thrust_max = 25;
-  constexpr static float thrust_min = 7;
-  constexpr static float dt = 0.01;
+  // constexpr static float thrust_max = 25;
+  // constexpr static float thrust_min = 7;
   const float k_f = 6.11 * exp(-8);
   const float arm_length = 0.171;
   float motor_commands[4] = {0, 0, 0, 0};
@@ -32,8 +33,7 @@ int main() {
 
       // Outer loop
       const float thrust_command = controller.z_position_controller(
-          z_position_target, subscriber::position[2], thrust_max, thrust_min,
-          dt);
+          z_position_target, subscriber::position[2]);
 
       // const float attitude_command =
       //     controller.horizontal_controller(quad, horizontal_target, dt);

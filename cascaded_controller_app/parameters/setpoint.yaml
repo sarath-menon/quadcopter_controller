@@ -1,0 +1,5 @@
+# Set position setpoints
+
+x_position_target: 0
+y_position_target: 0
+z_position_target: 5

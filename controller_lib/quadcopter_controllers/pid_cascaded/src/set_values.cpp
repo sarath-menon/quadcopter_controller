@@ -28,4 +28,16 @@ void PidCascadedController::set_gains(std::string path) {
   k_p__pitch = controller_yaml["k_p__pitch"].as<float>(); // [constant]
   k_i__pitch = controller_yaml["k_i__pitch"].as<float>(); // [constant]
   k_d__pitch = controller_yaml["k_d__pitch"].as<float>(); // [constant]
+
+  // simulation timestep
+  dt = controller_yaml["dt"].as<float>(); // [constant]
 };
+
+void PidCascadedController::set_quad_properties(std::string path) {
+  // Load yaml file containing quadcopter properties
+  YAML::Node quad_yaml = YAML::LoadFile(path);
+
+  // x position controller gains
+  thrust_max = quad_yaml["motor_thrust_max"].as<float>() * 4; // [constant]
+  thrust_min = quad_yaml["motor_thrust_min"].as<float>() * 4; // [constant]
+}
