@@ -3,6 +3,7 @@
 #include "matrix/math.hpp" // Px4 math header
 #include "motor_mixing.h"
 #include "pid_cascaded.h"
+#include "saturation_cutoff_mixer.h"
 #include <chrono>
 #include <iostream>
 #include <math.h>

@@ -13,16 +13,21 @@ int main() {
   subscriber::mocap_quadcopterSubscriber mysub;
   mysub.init();
 
-  // Initialize cascaded pid controller
+  // Create cascaded pid controller
   PidCascadedController controller;
+
   controller.set_gains(
       "cascaded_controller_app/parameters/controller_parameters.yaml");
   controller.set_quad_properties(
       "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
 
+  // Create quadcopter mixer
+  QuadcopterMixer mixer;
+  // Set quadcopter parameters in mixer
+  mixer.set_quad_properties(
+      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
+
   // Initialize for now
-  // constexpr static float thrust_max = 25;
-  // constexpr static float thrust_min = 7;
   const float k_f = 6.11 * exp(-8);
   const float arm_length = 0.171;
   float motor_commands[4] = {0, 0, 0, 0};
@@ -45,8 +50,9 @@ int main() {
       const float torque_command = 0;
 
       // Convert thrust, torque to motor speeds
-      motor_mixing(motor_commands, thrust_command, torque_command, k_f,
-                   arm_length);
+      mixer.motor_mixer(motor_commands, thrust_command, torque_command);
+      // motor_mixing(motor_commands, thrust_command, torque_command, k_f,
+      //              arm_length);
 
       msg.motor_command({motor_commands[0], motor_commands[1],
                          motor_commands[2], motor_commands[3]});

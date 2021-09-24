@@ -37,7 +37,7 @@ void PidCascadedController::set_quad_properties(std::string path) {
   // Load yaml file containing quadcopter properties
   YAML::Node quad_yaml = YAML::LoadFile(path);
 
-  // x position controller gains
+  // Set max, min thrust
   thrust_max = quad_yaml["motor_thrust_max"].as<float>() * 4; // [constant]
   thrust_min = quad_yaml["motor_thrust_min"].as<float>() * 4; // [constant]
 }
