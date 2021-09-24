@@ -10,4 +10,4 @@ motor_thrust_max: 6.25
 motor_thrust_min: 1.75
 
 # Relation btw square of motor speed and motor thrust
-k_f: 0.0000000611
+k_f: 6.11e-8

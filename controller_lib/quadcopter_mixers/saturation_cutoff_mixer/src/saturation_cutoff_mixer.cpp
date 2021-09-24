@@ -22,6 +22,8 @@ void QuadcopterMixer::motor_mixer(float motor_commands[4],
   motor_commands[0] = sqrt(f1 / k_f);
   motor_commands[2] = sqrt(f3 / k_f);
 
+  std::cout << "k_f: " << k_f << std::endl;
+
   // std::cout << "Actual Motor 1 command " << motor_commands[0] << std::endl;
 
   //   std::cout << "Controller: f1:" << f1 << "\tf2:" << f2 << "\tf3:" << f3

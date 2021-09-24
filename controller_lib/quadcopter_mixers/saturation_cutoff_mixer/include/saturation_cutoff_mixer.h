@@ -9,7 +9,7 @@ class QuadcopterMixer {
 protected:
   // Quadcopter Properties
   float arm_length = 0;
-  float k_f = 6.11 * exp(-8);
+  float k_f = 0;
   float motor_thrust_max = 0;
   float motor_thrust_min = 0;
 
