@@ -6,7 +6,6 @@
 
 class PidCascadedController {
 
-private:
 protected:
   // x position controller gains
   float k_p__x = 0; // [constant]
@@ -35,16 +34,21 @@ protected:
   // Feedforward thrust
   constexpr static float ff_thrust = 9.81;
 
-protected:
   // Quadcopter properties
   float thrust_max = 0;
   float thrust_min = 0;
 
-protected:
+  // Timescales
   int position_loop_rate = 0;
   int attitude_loop_rate = 0;
   float position_dt = 0;
   float attitude_dt = 0;
+
+  // Setpoints
+
+  float x_position_target = 0;
+  float y_position_target = 0;
+  float z_position_target = 0;
 
 public:
   // Positon controllers
@@ -57,7 +61,8 @@ public:
   //                             const float pitch_angle_max,
   //                             const float pitch_angle_min, const float dt);
   float z_position_controller(const float z_position_target,
-                              const float z_position_now);
+                              const float z_position_now,
+                              const float thrust_max, const float thrust_min);
 
   // Attitude controller
   float roll_angle_controller(const float roll_angle_target,
@@ -80,4 +85,6 @@ public:
   void set_quad_properties(std::string path);
   // To load timescales from yaml
   void set_timescales(std::string path);
+  // To load setpoints from yaml
+  void set_setpoints(std::string path);
 };

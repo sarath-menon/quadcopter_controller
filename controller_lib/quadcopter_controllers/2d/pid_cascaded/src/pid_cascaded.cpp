@@ -1,9 +1,9 @@
 #include "pid_cascaded.h"
 #include <iostream>
 
-float PidCascadedController::x_position_controller(
-    const float x_position_target, const float x_position_now,
-    const float roll_angle_max, const float roll_angle_min) {
+float PidCascadedController::x_position_controller(const float x_position_now,
+                                                   const float roll_angle_max,
+                                                   const float roll_angle_min) {
 
   // x position pid variables
   static float e_i__x = 0;
@@ -24,8 +24,7 @@ float PidCascadedController::x_position_controller(
   return roll_angle_command;
 };
 
-float PidCascadedController::z_position_controller(
-    const float z_position_target, const float z_position_now) {
+float PidCascadedController::z_position_controller(const float z_position_now) {
 
   // y position pid variables
   static float e_i__z = 0;

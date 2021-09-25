@@ -53,3 +53,13 @@ void PidCascadedController::set_timescales(std::string path) {
   position_dt = 1 / position_loop_rate;
   attitude_dt = 1 / attitude_loop_rate;
 }
+
+void PidCascadedController::set_setpoints(std::string path) {
+  // Load yaml file containing quadcopter properties
+  YAML::Node setpoint_yaml = YAML::LoadFile(path);
+
+  // Load timescales from yaml file
+  x_position_target = setpoint_yaml["x_position_target"].as<float>();
+  y_position_target = setpoint_yaml["y_position_target"].as<float>();
+  z_position_target = setpoint_yaml["z_position_target"].as<float>();
+}
