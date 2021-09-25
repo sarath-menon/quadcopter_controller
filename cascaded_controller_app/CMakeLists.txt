@@ -14,6 +14,7 @@ yaml-cpp
 
 target_link_libraries(quad_controller PRIVATE
 controller_lib
+utilities_lib
 msg_lib
 mocap_fastdds_lib
 motor_commands_msg_lib

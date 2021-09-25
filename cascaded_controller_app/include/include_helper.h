@@ -20,3 +20,9 @@
 // Subscriber callbacks
 #include "mocap_sub_callback.h"
 /////////////////////////////////////////////////////////////////////////////////
+
+// Utilities  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#include "waypoint_setter.h"
+
+// File containing ymal paths
+#include "yaml_paths.h"

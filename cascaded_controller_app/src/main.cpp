@@ -1,5 +1,4 @@
 #include "include_helper.h"
-#include "set_values.h"
 
 int main() {
 
@@ -16,20 +15,19 @@ int main() {
   // Create cascaded pid controller
   PidCascadedController controller;
 
-  controller.set_gains(
-      "cascaded_controller_app/parameters/controller_parameters.yaml");
-  controller.set_quad_properties(
-      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
+  controller.set_gains(controller_gains_yaml);
+  controller.set_quad_properties(quad_yaml);
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
-  mixer.set_quad_properties(
-      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
+  mixer.set_quad_properties(quad_yaml);
+
+  // Create waypointsetter
+  WaypointSetter target;
+  target.set_setpoints(setpoint_yaml);
 
   // Initialize for now
-  const float k_f = 6.11 * exp(-8);
-  const float arm_length = 0.171;
   float motor_commands[4] = {0, 0, 0, 0};
 
   for (;;) {
@@ -38,7 +36,7 @@ int main() {
 
       // Outer loop
       const float thrust_command = controller.z_position_controller(
-          z_position_target, subscriber::position[2]);
+          target.z_position(), subscriber::position[2]);
 
       // const float attitude_command =
       //     controller.horizontal_controller(quad, horizontal_target, dt);
