@@ -6,7 +6,7 @@
 
 class QuadcopterMixer {
 
-protected:
+private:
   // Quadcopter Properties
   float arm_length = 0;
   float k_f = 0;

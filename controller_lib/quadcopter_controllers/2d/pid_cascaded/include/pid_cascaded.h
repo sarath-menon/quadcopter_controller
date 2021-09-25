@@ -40,6 +40,12 @@ protected:
   float thrust_max = 0;
   float thrust_min = 0;
 
+protected:
+  int position_loop_rate = 0;
+  int attitude_loop_rate = 0;
+  float position_dt = 0;
+  float attitude_dt = 0;
+
 public:
   // Positon controllers
   float x_position_controller(const float x_position_target,
@@ -72,4 +78,6 @@ public:
   void set_gains(std::string path);
   // To load quadcopter properties from yaml file
   void set_quad_properties(std::string path);
+  // To load timescales from yaml
+  void set_timescales(std::string path);
 };

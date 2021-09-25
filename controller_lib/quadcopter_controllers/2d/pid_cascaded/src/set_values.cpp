@@ -41,3 +41,15 @@ void PidCascadedController::set_quad_properties(std::string path) {
   thrust_max = quad_yaml["motor_thrust_max"].as<float>() * 4; // [constant]
   thrust_min = quad_yaml["motor_thrust_min"].as<float>() * 4; // [constant]
 }
+
+void PidCascadedController::set_timescales(std::string path) {
+  // Load yaml file containing quadcopter properties
+  YAML::Node timescale_yaml = YAML::LoadFile(path);
+
+  // Load timescales from yaml file
+  position_loop_rate = timescale_yaml["position_loop_rate"].as<float>();
+  attitude_loop_rate = timescale_yaml["attitude_loop_rate"].as<float>();
+  // Compute dt from timescale
+  position_dt = 1 / position_loop_rate;
+  attitude_dt = 1 / attitude_loop_rate;
+}
