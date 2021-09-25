@@ -7,3 +7,9 @@
 [submodule "external/fastdds_mocap"]
 	path = external/fastdds_mocap
 	url = https://github.com/sarath-menon/fastdds_mocap.git
+[submodule "lib/controller_lib"]
+	path = lib/controller_lib
+	url = https://github.com/sarath-menon/controller_lib.git
+[submodule "lib/utilities_lib"]
+	path = lib/utilities_lib
+	url = https://github.com/sarath-menon/utilities_lib.git
