@@ -33,6 +33,10 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
       orientation[2] = st.orientation_quaternion().at(2);
       orientation[3] = st.orientation_quaternion().at(3);
 
+      orientation_euler[0] = st.orientation_euler().at(0);
+      orientation_euler[1] = st.orientation_euler().at(1);
+      orientation_euler[2] = st.orientation_euler().at(2);
+
       latency = st.delay();
 
       // Sleep for 1 millisecond
