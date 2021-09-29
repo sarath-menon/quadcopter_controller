@@ -34,18 +34,26 @@ int main() {
 
     if (subscriber::new_data == true) {
 
+      // Convert quaternion to euler angle
+      matrix::Quatf q_nb(subscriber::orientation[1], subscriber::orientation[2],
+                         subscriber::orientation[3],
+                         subscriber::orientation[0]);
+
+      matrix::Eulerf euler_orientation(q_nb);
+
+      std::cout << "Orientation:" << euler_orientation(0)
+                << euler_orientation(1) << euler_orientation(2);
+
       // Outer loop
       const float thrust_command = controller.z_position_controller(
           target.z_position(), subscriber::position[2]);
 
-      // const float attitude_command =
-      //     controller.horizontal_controller(quad, horizontal_target, dt);
+      const float attitude_command = controller.x_position_controller(
+          target.x_position(), subscriber::position[0]);
 
-      // // Inner loop
-      // const float torque_command =
-      //     controller.attitude_controller(quad, attitude_command, dt);
-
-      const float torque_command = 0;
+      // Inner loop
+      const float torque_command = controller.roll_angle_controller(
+          attitude_command, euler_orientation(0));
 
       // Convert thrust, torque to motor speeds
       mixer.motor_mixer(motor_commands, thrust_command, torque_command);
