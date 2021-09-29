@@ -5,7 +5,7 @@ int main() {
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
   motor_command_pub.init();
-  motor_comands msg;
+  actuator_commands msg;
   bool fastdds_flag = false;
 
   // Initialize mocap data subscriber
@@ -49,11 +49,9 @@ int main() {
 
       // Convert thrust, torque to motor speeds
       mixer.motor_mixer(motor_commands, thrust_command, torque_command);
-      // motor_mixing(motor_commands, thrust_command, torque_command, k_f,
-      //              arm_length);
 
-      msg.motor_command({motor_commands[0], motor_commands[1],
-                         motor_commands[2], motor_commands[3]});
+      msg.motor_commands({motor_commands[0], motor_commands[1],
+                          motor_commands[2], motor_commands[3]});
       // // Publish motor command msg
       motor_command_pub.run(msg);
 
@@ -71,9 +69,9 @@ int main() {
                 << -subscriber::orientation_euler[1] << '\t'
                 << subscriber::orientation_euler[2] << '\n';
       std::cout << "Attitude command:" << attitude_command << '\n' << '\n';
-      std::cout << "Motor commands:" << motor_commands[0] << '\t'
-                << motor_commands[1] << '\t' << motor_commands[2] << '\t'
-                << motor_commands[3] << '\t' << std::endl;
+      // std::cout << "Motor commands:" << motor_commands[0] << '\t'
+      //           << motor_commands[1] << '\t' << motor_commands[2] << '\t'
+      //           << motor_commands[3] << '\t' << std::endl;
 
       // std::cout << std::endl;
     }
