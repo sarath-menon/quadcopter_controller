@@ -1,12 +1,11 @@
 #include "include_helper.h"
-#include "set_values.h"
 
 int main() {
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
   motor_command_pub.init();
-  motor_comands msg;
+  actuator_commands msg;
   bool fastdds_flag = false;
 
   // Initialize mocap data subscriber
@@ -16,20 +15,19 @@ int main() {
   // Create cascaded pid controller
   PidCascadedController controller;
 
-  controller.set_gains(
-      "cascaded_controller_app/parameters/controller_parameters.yaml");
-  controller.set_quad_properties(
-      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
+  controller.set_gains(controller_gains_yaml);
+  controller.set_quad_properties(quad_yaml);
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
-  mixer.set_quad_properties(
-      "cascaded_controller_app/parameters/quadcopter_parameters.yaml");
+  mixer.set_quad_properties(quad_yaml);
+
+  // Create waypointsetter
+  WaypointSetter target;
+  target.set_setpoints(setpoint_yaml);
 
   // Initialize for now
-  const float k_f = 6.11 * exp(-8);
-  const float arm_length = 0.171;
   float motor_commands[4] = {0, 0, 0, 0};
 
   for (;;) {
@@ -38,24 +36,22 @@ int main() {
 
       // Outer loop
       const float thrust_command = controller.z_position_controller(
-          z_position_target, subscriber::position[2]);
+          target.z_position(), subscriber::position[2]);
 
-      // const float attitude_command =
-      //     controller.horizontal_controller(quad, horizontal_target, dt);
+      const float attitude_command = controller.x_position_controller(
+          target.x_position(), subscriber::position[0]);
 
-      // // Inner loop
-      // const float torque_command =
-      //     controller.attitude_controller(quad, attitude_command, dt);
+      // const float attitude_command = 0.5;
 
-      const float torque_command = 0;
+      // Inner loop
+      const float torque_command = controller.roll_angle_controller(
+          attitude_command, -subscriber::orientation_euler[1]);
 
       // Convert thrust, torque to motor speeds
       mixer.motor_mixer(motor_commands, thrust_command, torque_command);
-      // motor_mixing(motor_commands, thrust_command, torque_command, k_f,
-      //              arm_length);
 
-      msg.motor_command({motor_commands[0], motor_commands[1],
-                         motor_commands[2], motor_commands[3]});
+      msg.motor_commands({motor_commands[0], motor_commands[1],
+                          motor_commands[2], motor_commands[3]});
       // // Publish motor command msg
       motor_command_pub.run(msg);
 
@@ -64,14 +60,20 @@ int main() {
 
       std::cout << "Index:" << subscriber::index << '\n';
       std::cout << "Thrust command:" << thrust_command << '\n';
+      std::cout << "Torque command:" << torque_command << '\n';
       std::cout << "Position:" << subscriber::position[0] << '\t'
                 << subscriber::position[1] << '\t' << subscriber::position[2]
                 << '\n';
-      std::cout << "Motor commands:" << motor_commands[0] << '\t'
-                << motor_commands[1] << '\t' << motor_commands[2] << '\t'
-                << motor_commands[3] << '\t' << std::endl;
+      std::cout << "Orientation euler in degrees:"
+                << subscriber::orientation_euler[0] << '\t'
+                << -subscriber::orientation_euler[1] << '\t'
+                << subscriber::orientation_euler[2] << '\n';
+      std::cout << "Attitude command:" << attitude_command << '\n' << '\n';
+      // std::cout << "Motor commands:" << motor_commands[0] << '\t'
+      //           << motor_commands[1] << '\t' << motor_commands[2] << '\t'
+      //           << motor_commands[3] << '\t' << std::endl;
 
-      std::cout << std::endl;
+      // std::cout << std::endl;
     }
   }
 }

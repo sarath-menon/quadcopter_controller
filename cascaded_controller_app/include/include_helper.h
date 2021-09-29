@@ -1,7 +1,6 @@
 #pragma once
 
 #include "matrix/math.hpp" // Px4 math header
-#include "motor_mixing.h"
 #include "pid_cascaded.h"
 #include "saturation_cutoff_mixer.h"
 #include <chrono>
@@ -21,3 +20,9 @@
 // Subscriber callbacks
 #include "mocap_sub_callback.h"
 /////////////////////////////////////////////////////////////////////////////////
+
+// Utilities  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#include "waypoint_setter.h"
+
+// File containing ymal paths
+#include "yaml_paths.h"

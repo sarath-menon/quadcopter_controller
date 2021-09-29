@@ -1,9 +1,15 @@
-[submodule "external/fastdds_motor_commands"]
-	path = external/fastdds_motor_commands
-	url = https://github.com/sarath-menon/fastdds_motor_commands.git
 [submodule "external/PX4-Matrix"]
 	path = external/PX4-Matrix
 	url = https://github.com/PX4/PX4-Matrix.git
 [submodule "external/fastdds_mocap"]
 	path = external/fastdds_mocap
 	url = https://github.com/sarath-menon/fastdds_mocap.git
+[submodule "lib/controller_lib"]
+	path = lib/controller_lib
+	url = https://github.com/sarath-menon/controller_lib.git
+[submodule "lib/utilities_lib"]
+	path = lib/utilities_lib
+	url = https://github.com/sarath-menon/utilities_lib.git
+[submodule "external/fastdds_actuator_controls"]
+	path = external/fastdds_actuator_controls
+	url = https://github.com/sarath-menon/fastdds_actuator_controls.git

@@ -1,0 +1,5 @@
+# Controller timescales:
+
+position_loop_rate: 1
+attitude_loop_rate: 1
+# angular_velocity_loop_rate: 1
