@@ -8,21 +8,20 @@ k_d__z: 3.0
 # Translation PID Gains
 k_p__x: 7
 k_i__x: 0
-k_d__x: 3
+k_d__x: 3.0
 
 # Roll controller PID Gains
+# k_p__roll: 3.1
+# k_i__roll: 0
+# k_d__roll: 0.22
 k_p__roll: 3.1
 k_i__roll: 0
 k_d__roll: 0.22
 
 # Pitch controller PID Gains
-# k_p__pitch: 3.1
-# k_i__pitch: 0
-# k_d__pitch: 0.22
-
-k_p__pitch: 0.001
+k_p__pitch: 3.1
 k_i__pitch: 0
-k_d__pitch: 0.0002
+k_d__pitch: 0.22
 
 # Simulation timestep
 dt: 0.01

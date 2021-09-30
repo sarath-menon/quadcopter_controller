@@ -10,6 +10,7 @@ target_link_libraries(quad_controller PRIVATE
 fastcdr 
 fastrtps
 yaml-cpp
+spdlog::spdlog
 )
 
 target_link_libraries(quad_controller PRIVATE

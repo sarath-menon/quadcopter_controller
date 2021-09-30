@@ -4,9 +4,11 @@ int main() {
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
-  motor_command_pub.init();
+  if (motor_command_pub.init() != true) {
+    spdlog::error("Motor command subscriber cannot be initialized");
+  }
+
   actuator_commands msg;
-  bool fastdds_flag = false;
 
   // Initialize mocap data subscriber
   mocap_quadcopterSubscriber mysub;

@@ -8,6 +8,8 @@
 #include <math.h>
 #include <math_helper.h>
 
+#include "spdlog/spdlog.h"
+
 // Fastdds  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Mocap data subscriber
