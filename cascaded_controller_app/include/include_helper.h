@@ -32,3 +32,6 @@
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/stdout_sinks.h"
 #include "spdlog/spdlog.h"
+
+// Logger
+#include "logger.h"

@@ -2,7 +2,8 @@
 
 int main() {
 
-  // Create logger
+  // Initialize logger
+
   std::vector<spdlog::sink_ptr> sinks;
   sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_st>());
   sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_st>(
@@ -12,17 +13,19 @@ int main() {
   // register logger to access it globally
   spdlog::register_logger(combined_logger);
 
+  Logger logger;
+
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
   actuator_commands msg;
 
   try {
     if (motor_command_pub.init() == true)
-      combined_logger->info("Motor command subscriber initialized");
+      logger.log_info("Initialized Motor command subscriber");
     else
       throw(motor_command_pub);
   } catch (motor_commandsPublisher motor_command_pub) {
-    combined_logger->error("Motor command publisher cannot be initialized");
+    logger.log_error("Motor command publisher cannot be initialized");
     std::exit(EXIT_FAILURE);
   }
 
@@ -30,11 +33,11 @@ int main() {
   mocap_quadcopterSubscriber mocap_sub;
   try {
     if (mocap_sub.init() == true)
-      combined_logger->info("Initialized Mocap subscriber");
+      logger.log_info("Initialized Mocap subscriber");
     else
       throw(motor_command_pub);
   } catch (motor_commandsPublisher motor_command_pub) {
-    combined_logger->error("Initialized Mocap subscriber cannot be");
+    logger.log_error("Initialized Mocap subscriber cannot be");
     std::exit(EXIT_FAILURE);
   }
 
@@ -42,18 +45,18 @@ int main() {
   PidCascadedController controller;
   controller.set_gains(yaml_paths::controller_gains_yaml);
   controller.set_quad_properties(yaml_paths::quad_yaml);
-  combined_logger->info("Initialized Controller");
+  logger.log_info("Initialized Controller");
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
   mixer.set_quad_properties(yaml_paths::quad_yaml);
-  combined_logger->info("Initialized Mixer");
+  logger.log_info("Initialized Mixer");
 
   // Create waypointsetter
   WaypointSetter target;
   target.set_setpoints(yaml_paths::setpoint_yaml);
-  combined_logger->info("Initialized Waypoint setter");
+  logger.log_info("Initialized Waypoint setter");
 
   // Initialize for now
   float motor_commands[4] = {0, 0, 0, 0};
