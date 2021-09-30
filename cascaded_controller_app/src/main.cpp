@@ -33,6 +33,7 @@ int main() {
   for (;;) {
 
     if (subscriber::new_data == true) {
+      std::cout << "Received pose data:" << subscriber::index << '\n';
 
       // Set flag to false after data has been received
       subscriber::new_data = false;
@@ -59,8 +60,8 @@ int main() {
                           motor_commands[2], motor_commands[3]});
       // // Publish motor command msg
       motor_command_pub.run(msg);
+      std::cout << "Published motor commands:" << subscriber::index << '\n';
 
-      std::cout << "Index:" << subscriber::index << '\n';
       std::cout << "Thrust command:" << thrust_command << '\n';
       std::cout << "Torque command:" << torque_command << '\n';
       std::cout << "Position:" << subscriber::position[0] << '\t'
