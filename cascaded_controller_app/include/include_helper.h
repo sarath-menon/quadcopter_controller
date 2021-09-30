@@ -25,7 +25,7 @@
 #include "waypoint_setter.h"
 
 // File containing ymal paths
-#include "yaml_paths.h"
+#include "paths.h"
 
 // spdlog headers
 #include "spdlog/sinks/basic_file_sink.h"

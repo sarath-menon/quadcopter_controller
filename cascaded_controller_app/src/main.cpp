@@ -3,17 +3,7 @@
 int main() {
 
   // Initialize logger
-
-  std::vector<spdlog::sink_ptr> sinks;
-  sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_st>());
-  sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_st>(
-      "logs/text-log.txt", 23, 59));
-  auto combined_logger =
-      std::make_shared<spdlog::logger>("name", begin(sinks), end(sinks));
-  // register logger to access it globally
-  spdlog::register_logger(combined_logger);
-
-  Logger logger;
+  Logger logger(paths::event_log_path, paths::event_log_path);
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
@@ -31,6 +21,7 @@ int main() {
 
   // Initialize mocap data subscriber
   mocap_quadcopterSubscriber mocap_sub;
+
   try {
     if (mocap_sub.init() == true)
       logger.log_info("Initialized Mocap subscriber");
@@ -43,19 +34,19 @@ int main() {
 
   // Create cascaded pid controller
   PidCascadedController controller;
-  controller.set_gains(yaml_paths::controller_gains_yaml);
-  controller.set_quad_properties(yaml_paths::quad_yaml);
+  controller.set_gains(paths::controller_gains_yaml);
+  controller.set_quad_properties(paths::quad_yaml);
   logger.log_info("Initialized Controller");
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
-  mixer.set_quad_properties(yaml_paths::quad_yaml);
+  mixer.set_quad_properties(paths::quad_yaml);
   logger.log_info("Initialized Mixer");
 
   // Create waypointsetter
   WaypointSetter target;
-  target.set_setpoints(yaml_paths::setpoint_yaml);
+  target.set_setpoints(paths::setpoint_yaml);
   logger.log_info("Initialized Waypoint setter");
 
   // Initialize for now
