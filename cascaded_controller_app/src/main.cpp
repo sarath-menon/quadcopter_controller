@@ -2,6 +2,16 @@
 
 int main() {
 
+  // Create logger
+  std::vector<spdlog::sink_ptr> sinks;
+  sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_st>());
+  sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_st>(
+      "logs/text-log.txt", 23, 59));
+  auto combined_logger =
+      std::make_shared<spdlog::logger>("name", begin(sinks), end(sinks));
+  // register logger to access it globally
+  spdlog::register_logger(combined_logger);
+
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
   if (motor_command_pub.init() != true) {
@@ -17,17 +27,17 @@ int main() {
   // Create cascaded pid controller
   PidCascadedController controller;
 
-  controller.set_gains(controller_gains_yaml);
-  controller.set_quad_properties(quad_yaml);
+  controller.set_gains(yaml_paths::controller_gains_yaml);
+  controller.set_quad_properties(yaml_paths::quad_yaml);
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
-  mixer.set_quad_properties(quad_yaml);
+  mixer.set_quad_properties(yaml_paths::quad_yaml);
 
   // Create waypointsetter
   WaypointSetter target;
-  target.set_setpoints(setpoint_yaml);
+  target.set_setpoints(yaml_paths::setpoint_yaml);
 
   // Initialize for now
   float motor_commands[4] = {0, 0, 0, 0};

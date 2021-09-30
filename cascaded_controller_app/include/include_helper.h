@@ -8,8 +8,6 @@
 #include <math.h>
 #include <math_helper.h>
 
-#include "spdlog/spdlog.h"
-
 // Fastdds  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Mocap data subscriber
@@ -28,3 +26,9 @@
 
 // File containing ymal paths
 #include "yaml_paths.h"
+
+// spdlog headers
+#include "spdlog/sinks/basic_file_sink.h"
+#include "spdlog/sinks/daily_file_sink.h"
+#include "spdlog/sinks/stdout_sinks.h"
+#include "spdlog/spdlog.h"
