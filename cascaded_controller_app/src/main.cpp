@@ -14,32 +14,46 @@ int main() {
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
-  if (motor_command_pub.init() != true) {
-    combined_logger->error("Motor command subscriber cannot be initialized");
-  }
-
   actuator_commands msg;
+
+  try {
+    if (motor_command_pub.init() == true)
+      combined_logger->info("Motor command subscriber initialized");
+    else
+      throw(motor_command_pub);
+  } catch (motor_commandsPublisher motor_command_pub) {
+    combined_logger->error("Motor command publisher cannot be initialized");
+    std::exit(EXIT_FAILURE);
+  }
 
   // Initialize mocap data subscriber
   mocap_quadcopterSubscriber mocap_sub;
-  if (mocap_sub.init() != true) {
-    combined_logger->error("Mocap publisher subscriber cannot be initialized");
+  try {
+    if (mocap_sub.init() == true)
+      combined_logger->info("Initialized Mocap subscriber");
+    else
+      throw(motor_command_pub);
+  } catch (motor_commandsPublisher motor_command_pub) {
+    combined_logger->error("Initialized Mocap subscriber cannot be");
+    std::exit(EXIT_FAILURE);
   }
 
   // Create cascaded pid controller
   PidCascadedController controller;
-
   controller.set_gains(yaml_paths::controller_gains_yaml);
   controller.set_quad_properties(yaml_paths::quad_yaml);
+  combined_logger->info("Initialized Controller");
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
   mixer.set_quad_properties(yaml_paths::quad_yaml);
+  combined_logger->info("Initialized Mixer");
 
   // Create waypointsetter
   WaypointSetter target;
   target.set_setpoints(yaml_paths::setpoint_yaml);
+  combined_logger->info("Initialized Waypoint setter");
 
   // Initialize for now
   float motor_commands[4] = {0, 0, 0, 0};
