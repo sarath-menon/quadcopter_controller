@@ -16,9 +16,13 @@ k_i__roll: 0
 k_d__roll: 0.22
 
 # Pitch controller PID Gains
-k_p__pitch: 3.1
+# k_p__pitch: 3.1
+# k_i__pitch: 0
+# k_d__pitch: 0.22
+
+k_p__pitch: 0.001
 k_i__pitch: 0
-k_d__pitch: 0.22
+k_d__pitch: 0.0002
 
 # Simulation timestep
 dt: 0.01

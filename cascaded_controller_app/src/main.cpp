@@ -34,6 +34,9 @@ int main() {
 
     if (subscriber::new_data == true) {
 
+      // Set flag to false after data has been received
+      subscriber::new_data = false;
+
       // Outer loop
       const float thrust_command = controller.z_position_controller(
           target.z_position(), subscriber::position[2]);
@@ -50,13 +53,12 @@ int main() {
       // Convert thrust, torque to motor speeds
       mixer.motor_mixer(motor_commands, thrust_command, torque_command);
 
+      // Send motor commands to simulator
+      msg.index({subscriber::index});
       msg.motor_commands({motor_commands[0], motor_commands[1],
                           motor_commands[2], motor_commands[3]});
       // // Publish motor command msg
       motor_command_pub.run(msg);
-
-      // Set flag to false after data has been processed
-      subscriber::new_data = false;
 
       std::cout << "Index:" << subscriber::index << '\n';
       std::cout << "Thrust command:" << thrust_command << '\n';
