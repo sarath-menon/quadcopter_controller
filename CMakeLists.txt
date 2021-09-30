@@ -9,9 +9,10 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
+find_package(spdlog REQUIRED)
 
 include_directories(external/PX4-Matrix)
-include_directories(external/math_helper)
+include_directories(external/helper)
 
 add_subdirectory(cascaded_controller_app)
 add_subdirectory(lib)

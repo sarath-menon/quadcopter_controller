@@ -13,3 +13,6 @@
 [submodule "external/fastdds_actuator_controls"]
 	path = external/fastdds_actuator_controls
 	url = https://github.com/sarath-menon/fastdds_actuator_controls.git
+[submodule "external/helper"]
+	path = external/helper
+	url = https://github.com/sarath-menon/helper.git
