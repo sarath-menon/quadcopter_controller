@@ -15,14 +15,16 @@ int main() {
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
   if (motor_command_pub.init() != true) {
-    spdlog::error("Motor command subscriber cannot be initialized");
+    combined_logger->error("Motor command subscriber cannot be initialized");
   }
 
   actuator_commands msg;
 
   // Initialize mocap data subscriber
-  mocap_quadcopterSubscriber mysub;
-  mysub.init();
+  mocap_quadcopterSubscriber mocap_sub;
+  if (mocap_sub.init() != true) {
+    combined_logger->error("Mocap publisher subscriber cannot be initialized");
+  }
 
   // Create cascaded pid controller
   PidCascadedController controller;
