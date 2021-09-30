@@ -15,7 +15,7 @@ std::string controller_gains_yaml =
 std::string controller_timescales_yaml =
     "cascaded_controller_app/parameters/controller_timescales.yaml";
 
-std::string setpoint_yaml = "cascaded_controller_app/parameters/setpoint.yaml1";
+std::string setpoint_yaml = "cascaded_controller_app/parameters/setpoint.yaml";
 
 // Vector of yaml files for safety check
 std::vector<std::string> files_to_check = {quad_yaml, controller_gains_yaml,
