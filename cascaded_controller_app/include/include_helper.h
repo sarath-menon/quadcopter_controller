@@ -17,8 +17,6 @@
 #include "motor_commandsPubSubTypes.h"
 #include "motor_commandsPublisher.h"
 
-// Subscriber callbacks
-#include "mocap_sub_callback.h"
 /////////////////////////////////////////////////////////////////////////////////
 
 // Utilities  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

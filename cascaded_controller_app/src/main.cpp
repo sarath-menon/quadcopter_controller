@@ -53,7 +53,7 @@ int main() {
   float motor_commands[4] = {0, 0, 0, 0};
 
   bool session_end_flag = true;
-  logger.log_info("Waiting for new mocap datastream");
+  logger.log_info("Waiting for mocap datastream");
 
   for (;;) {
     // for (int i = 0; i < 10; i++) {
@@ -93,12 +93,6 @@ int main() {
       // // Publish motor command msg
       motor_command_pub.run(msg);
 
-      // if (mocap_sub::index == 300) {
-      //   logger.shutdown();
-      //   std::this_thread::sleep_for(std::chrono::seconds(1));
-      //   std::exit(EXIT_FAILURE);
-      // }
-
       // std::cout << "Published motor commands:" << mocap_sub::index << '\n';
 
       // std::cout << "Thrust command:" << thrust_command << '\n';
@@ -112,7 +106,25 @@ int main() {
       //           << mocap_sub::orientation_euler[2] << '\n';
       // std::cout << "Attitude command:" << attitude_command << '\n' << '\n';
 
-      logger.log_data(thrust_command);
+      // logger.log_data(mocap_sub::position[0]);
+      // logger.log_data(mocap_sub::position[1]);
+      // logger.log_data(mocap_sub::position[2]);
+      // logger.log_data(mocap_sub::orientation_euler[0]);
+      // logger.log_data(mocap_sub::orientation_euler[1]);
+      // logger.log_data(mocap_sub::orientation_euler[2]);
+      // logger.log_data(thrust_command);
+      // logger.log_data(0);
+      // logger.log_data(torque_command);
+      // logger.log_data(0);
+      // logger.log_data(motor_commands[0]);
+      // logger.log_data(motor_commands[1]);
+      // logger.log_data(motor_commands[2]);
+      // logger.log_data(motor_commands[3]);
+
+      // logger.log_next_line();
+      logger.add_to_log("thrust_command", &thrust_command);
+      logger.log_now();
+
       // std::cout << "Motor commands:" << motor_commands[0] << '\t'
       //           << motor_commands[1] << '\t' << motor_commands[2] << '\t'
       //           << motor_commands[3] << '\t' << std::endl;
