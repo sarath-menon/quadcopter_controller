@@ -1,0 +1,215 @@
+[2021-09-30 23:17:23.777] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:17:23.790] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:17:23.791] [event_logger] [info] Initialized Controller
+[2021-09-30 23:17:23.792] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:17:23.792] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:18:04.799] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:18:04.811] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:18:04.812] [event_logger] [info] Initialized Controller
+[2021-09-30 23:18:04.812] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:18:04.812] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:18:15.590] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:18:15.601] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:18:15.601] [event_logger] [info] Initialized Controller
+[2021-09-30 23:18:15.602] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:18:15.602] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:26:07.275] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:26:07.323] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:26:07.329] [event_logger] [info] Initialized Controller
+[2021-09-30 23:26:07.329] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:26:07.329] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:26:19.114] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:26:19.130] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:26:19.131] [event_logger] [info] Initialized Controller
+[2021-09-30 23:26:19.131] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:26:19.131] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:26:28.415] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:26:28.434] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:26:28.435] [event_logger] [info] Initialized Controller
+[2021-09-30 23:26:28.435] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:26:28.435] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:26:37.625] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:26:37.972] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:26:37.972] [event_logger] [info] Initialized Controller
+[2021-09-30 23:26:37.973] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:26:37.973] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:26:47.103] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:26:47.126] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:26:47.126] [event_logger] [info] Initialized Controller
+[2021-09-30 23:26:47.127] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:26:47.127] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:27:13.163] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:27:13.179] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:27:13.180] [event_logger] [info] Initialized Controller
+[2021-09-30 23:27:13.180] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:27:13.180] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:28:15.455] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:28:15.468] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:28:15.469] [event_logger] [info] Initialized Controller
+[2021-09-30 23:28:15.469] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:28:15.470] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:29:34.855] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:29:34.870] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:29:34.873] [event_logger] [info] Initialized Controller
+[2021-09-30 23:29:34.873] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:29:34.874] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:29:50.250] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:29:50.266] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:29:50.267] [event_logger] [info] Initialized Controller
+[2021-09-30 23:29:50.268] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:29:50.268] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:30:24.796] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:30:24.813] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:30:24.814] [event_logger] [info] Initialized Controller
+[2021-09-30 23:30:24.814] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:30:24.815] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:31:32.638] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:31:32.647] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:31:32.649] [event_logger] [info] Initialized Controller
+[2021-09-30 23:31:32.649] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:31:32.649] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:34:12.263] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:34:12.277] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:34:12.278] [event_logger] [info] Initialized Controller
+[2021-09-30 23:34:12.279] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:34:12.279] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:34:22.545] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:34:22.560] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:34:22.561] [event_logger] [info] Initialized Controller
+[2021-09-30 23:34:22.561] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:34:22.561] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:34:32.291] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:34:32.302] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:34:32.303] [event_logger] [info] Initialized Controller
+[2021-09-30 23:34:32.303] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:34:32.303] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:34:48.688] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:34:48.707] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:34:48.708] [event_logger] [info] Initialized Controller
+[2021-09-30 23:34:48.709] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:34:48.709] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:34:59.485] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:34:59.507] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:34:59.509] [event_logger] [info] Initialized Controller
+[2021-09-30 23:34:59.509] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:34:59.510] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:37:11.600] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:37:11.613] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:37:11.615] [event_logger] [info] Initialized Controller
+[2021-09-30 23:37:11.615] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:37:11.615] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:37:22.167] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:37:22.184] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:37:22.185] [event_logger] [info] Initialized Controller
+[2021-09-30 23:37:22.186] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:37:22.186] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:39:53.229] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:39:53.581] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:39:53.582] [event_logger] [info] Initialized Controller
+[2021-09-30 23:39:53.582] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:39:53.583] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:01.372] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:01.389] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:01.390] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:01.390] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:01.390] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:10.481] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:10.494] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:10.495] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:10.495] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:10.495] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:19.952] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:19.963] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:19.964] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:19.964] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:19.964] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:27.594] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:27.608] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:27.609] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:27.609] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:27.609] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:38.073] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:38.085] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:38.086] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:38.086] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:38.086] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:46.273] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:46.320] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:46.321] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:46.321] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:46.321] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:40:55.716] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:40:55.730] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:40:55.731] [event_logger] [info] Initialized Controller
+[2021-09-30 23:40:55.731] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:40:55.731] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:06.403] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:06.421] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:06.422] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:06.422] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:06.422] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:15.103] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:15.116] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:15.117] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:15.117] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:15.117] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:24.071] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:24.083] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:24.086] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:24.086] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:24.087] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:32.068] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:32.081] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:32.082] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:32.082] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:32.082] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:40.970] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:40.983] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:40.984] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:40.984] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:40.984] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:48.927] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:48.948] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:48.949] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:48.949] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:48.949] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:41:56.532] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:41:56.544] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:41:56.544] [event_logger] [info] Initialized Controller
+[2021-09-30 23:41:56.544] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:41:56.544] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:42:04.449] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:42:04.461] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:42:04.462] [event_logger] [info] Initialized Controller
+[2021-09-30 23:42:04.462] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:42:04.462] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:42:12.579] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:42:12.590] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:42:12.592] [event_logger] [info] Initialized Controller
+[2021-09-30 23:42:12.592] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:42:12.592] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:42:22.678] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:42:22.689] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:42:22.690] [event_logger] [info] Initialized Controller
+[2021-09-30 23:42:22.690] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:42:22.690] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:42:38.363] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:42:38.377] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:42:38.381] [event_logger] [info] Initialized Controller
+[2021-09-30 23:42:38.381] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:42:38.381] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:42:52.501] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:42:52.514] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:42:52.515] [event_logger] [info] Initialized Controller
+[2021-09-30 23:42:52.515] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:42:52.515] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:43:06.843] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:43:06.853] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:43:06.854] [event_logger] [info] Initialized Controller
+[2021-09-30 23:43:06.854] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:43:06.855] [event_logger] [info] Initialized Waypoint setter
+[2021-09-30 23:43:15.279] [event_logger] [info] Initialized Motor command subscriber
+[2021-09-30 23:43:15.298] [event_logger] [info] Initialized Mocap subscriber
+[2021-09-30 23:43:15.299] [event_logger] [info] Initialized Controller
+[2021-09-30 23:43:15.299] [event_logger] [info] Initialized Mixer
+[2021-09-30 23:43:15.300] [event_logger] [info] Initialized Waypoint setter

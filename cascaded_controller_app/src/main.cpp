@@ -3,7 +3,7 @@
 int main() {
 
   // Initialize logger
-  Logger logger(paths::event_log_path, paths::event_log_path);
+  Logger logger(paths::event_log_path, paths::data_log_path);
 
   // Initialize motor command publisher
   motor_commandsPublisher motor_command_pub;
@@ -49,13 +49,23 @@ int main() {
   target.set_setpoints(paths::setpoint_yaml);
   logger.log_info("Initialized Waypoint setter");
 
+  bool session_end_flag = true;
+
   // Initialize for now
   float motor_commands[4] = {0, 0, 0, 0};
 
   for (;;) {
+    // for (int i = 0; i < 10; i++) {
 
     if (mocap_sub::new_data == true) {
+
       std::cout << "Received pose data:" << mocap_sub::index << '\n';
+      std::cout << "Subscriber count:" << mocap_sub::matched << '\n';
+
+      if (mocap_sub::index == 1) {
+        session_end_flag = false;
+        logger.log_info("Starting session");
+      }
 
       // Set flag to false after data has been received
       mocap_sub::new_data = false;
@@ -82,23 +92,44 @@ int main() {
                           motor_commands[2], motor_commands[3]});
       // // Publish motor command msg
       motor_command_pub.run(msg);
-      std::cout << "Published motor commands:" << mocap_sub::index << '\n';
 
-      std::cout << "Thrust command:" << thrust_command << '\n';
-      std::cout << "Torque command:" << torque_command << '\n';
-      std::cout << "Position:" << mocap_sub::position[0] << '\t'
-                << mocap_sub::position[1] << '\t' << mocap_sub::position[2]
-                << '\n';
-      std::cout << "Orientation euler in degrees:"
-                << mocap_sub::orientation_euler[0] << '\t'
-                << -mocap_sub::orientation_euler[1] << '\t'
-                << mocap_sub::orientation_euler[2] << '\n';
-      std::cout << "Attitude command:" << attitude_command << '\n' << '\n';
+      // if (mocap_sub::index == 300) {
+      //   logger.shutdown();
+      //   std::this_thread::sleep_for(std::chrono::seconds(1));
+      //   std::exit(EXIT_FAILURE);
+      // }
+
+      // std::cout << "Published motor commands:" << mocap_sub::index << '\n';
+
+      // std::cout << "Thrust command:" << thrust_command << '\n';
+      // std::cout << "Torque command:" << torque_command << '\n';
+      // std::cout << "Position:" << mocap_sub::position[0] << '\t'
+      //           << mocap_sub::position[1] << '\t' << mocap_sub::position[2]
+      //           << '\n';
+      // std::cout << "Orientation euler in degrees:"
+      //           << mocap_sub::orientation_euler[0] << '\t'
+      //           << -mocap_sub::orientation_euler[1] << '\t'
+      //           << mocap_sub::orientation_euler[2] << '\n';
+      // std::cout << "Attitude command:" << attitude_command << '\n' << '\n';
+
+      logger.log_data(thrust_command);
       // std::cout << "Motor commands:" << motor_commands[0] << '\t'
       //           << motor_commands[1] << '\t' << motor_commands[2] << '\t'
       //           << motor_commands[3] << '\t' << std::endl;
 
       // std::cout << std::endl;
+    }
+
+    else if (session_end_flag == false && mocap_sub::matched == 0) {
+
+      session_end_flag = true;
+      logger.log_info("Simulator has closed. Ending current session");
+      logger.shutdown_data_logger();
+    }
+
+    else if (session_end_flag == true && mocap_sub::matched == 0) {
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+      std::cout << "Waiting to start new session" << '\n';
     }
   }
 }

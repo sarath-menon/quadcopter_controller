@@ -16,6 +16,9 @@ void mocap_quadcopterSubscriber::SubListener::on_data_available(
       ++samples;
       mocap_sub::new_data = true;
 
+      // // Set subscriber count
+      // mocap_sub::matched = matched;
+
       // std::cout << "\nSample received, count=" << samples << std::endl;
       // std::cout << "Index=" << st.index() << std::endl;
       // std::cout << "Object Name:" << st.object_name() << std::endl;
