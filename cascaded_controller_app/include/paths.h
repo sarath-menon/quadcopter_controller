@@ -25,7 +25,7 @@ std::vector<std::string> files_to_check = {quad_yaml, controller_gains_yaml,
 
 // Text file paths
 
-std::string event_log_path = "logs/event_log.txt";
-std::string data_log_path = "logs/data_log.txt";
+std::string event_log_path = "logs/event_logs/";
+std::string data_log_path = "logs/data_logs/";
 
 } // namespace paths

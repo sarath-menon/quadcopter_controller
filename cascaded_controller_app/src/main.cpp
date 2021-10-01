@@ -49,10 +49,11 @@ int main() {
   target.set_setpoints(paths::setpoint_yaml);
   logger.log_info("Initialized Waypoint setter");
 
-  bool session_end_flag = true;
-
   // Initialize for now
   float motor_commands[4] = {0, 0, 0, 0};
+
+  bool session_end_flag = true;
+  logger.log_info("Waiting for new mocap datastream");
 
   for (;;) {
     // for (int i = 0; i < 10; i++) {
@@ -60,7 +61,6 @@ int main() {
     if (mocap_sub::new_data == true) {
 
       std::cout << "Received pose data:" << mocap_sub::index << '\n';
-      std::cout << "Subscriber count:" << mocap_sub::matched << '\n';
 
       if (mocap_sub::index == 1) {
         session_end_flag = false;
@@ -123,13 +123,14 @@ int main() {
     else if (session_end_flag == false && mocap_sub::matched == 0) {
 
       session_end_flag = true;
-      logger.log_info("Simulator has closed. Ending current session");
       logger.shutdown_data_logger();
+      logger.log_info("Mocap datastreastream has closed. Data log saved");
+      logger.log_info("Waiting for new mocap datastream");
     }
 
     else if (session_end_flag == true && mocap_sub::matched == 0) {
       std::this_thread::sleep_for(std::chrono::seconds(1));
-      std::cout << "Waiting to start new session" << '\n';
+      std::cout << ".";
     }
   }
 }
