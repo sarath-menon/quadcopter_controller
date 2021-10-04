@@ -33,3 +33,6 @@
 
 // Logger
 #include "logger.h"
+
+// Basic cascaded controller
+#include "basic_pid_cascaded.h"

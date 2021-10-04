@@ -33,7 +33,7 @@ int main() {
   }
 
   // Create cascaded pid controller
-  PidCascadedController controller;
+  BasicPidCascaded controller;
   controller.set_gains(paths::controller_gains_yaml);
   controller.set_quad_properties(paths::quad_yaml);
   logger.log_info("Initialized Controller");
@@ -50,7 +50,8 @@ int main() {
   logger.log_info("Initialized Waypoint setter");
 
   // Initialize for now
-  float motor_commands[4] = {0, 0, 0, 0};
+  matrix::Vector<float, 4> motor_commands;
+  matrix::Vector<float, 4> thrust_torque_cmd;
 
   bool session_end_flag = true;
   logger.log_info("Waiting for mocap datastream");
@@ -70,33 +71,26 @@ int main() {
       // Set flag to false after data has been received
       mocap_sub::new_data = false;
 
-      // Outer loop
-      const float thrust_command = controller.z_position_controller(
-          target.z_position(), mocap_sub::position[2]);
-
-      const float attitude_command = controller.x_position_controller(
-          target.x_position(), mocap_sub::position[0]);
-
-      // const float attitude_command = 0.5;
-
-      // Inner loop
-      const float torque_command = controller.roll_angle_controller(
-          attitude_command, -mocap_sub::orientation_euler[1]);
+      // Cascaded controller
+      thrust_torque_cmd = controller.cascaded_controller(
+          mocap_sub::position, mocap_sub::orientation_euler, target.position());
 
       // Convert thrust, torque to motor speeds
-      mixer.motor_mixer(motor_commands, thrust_command, torque_command);
+      motor_commands =
+          mixer.motor_mixer(thrust_torque_cmd(0), thrust_torque_cmd(1));
 
       // Send motor commands to simulator
       msg.index({mocap_sub::index});
-      msg.motor_commands({motor_commands[0], motor_commands[1],
-                          motor_commands[2], motor_commands[3]});
+      msg.motor_commands({motor_commands(0), motor_commands(1),
+                          motor_commands(2), motor_commands(3)});
       // // Publish motor command msg
       motor_command_pub.run(msg);
 
       // std::cout << "Published motor commands:" << mocap_sub::index << '\n';
 
-      // std::cout << "Thrust command:" << thrust_command << '\n';
-      // std::cout << "Torque command:" << torque_command << '\n';
+      std::cout << "Thrust command:" << thrust_torque_cmd(0) << '\n';
+      std::cout << "Torque commands:" << thrust_torque_cmd(1) << '\t'
+                << thrust_torque_cmd(2) << '\t' << thrust_torque_cmd(3) << '\n';
       // std::cout << "Position:" << mocap_sub::position[0] << '\t'
       //           << mocap_sub::position[1] << '\t' << mocap_sub::position[2]
       //           << '\n';
@@ -122,7 +116,7 @@ int main() {
       // logger.log_data(motor_commands[3]);
 
       // logger.log_next_line();
-      logger.add_to_log("thrust_command", &thrust_command);
+      // logger.add_to_log("thrust_command", &thrust_command);
       logger.log_now();
 
       // std::cout << "Motor commands:" << motor_commands[0] << '\t'

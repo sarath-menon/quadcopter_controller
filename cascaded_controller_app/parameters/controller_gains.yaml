@@ -6,9 +6,9 @@ k_i__z: 0
 k_d__z: 3.0
 
 # Translation PID Gains
-k_p__x: 7
-k_i__x: 0
-k_d__x: 3.0
+k_p__y: 7
+k_i__y: 0
+k_d__y: 3.0
 
 # Roll controller PID Gains
 # k_p__roll: 3.1
