@@ -33,7 +33,7 @@ int main() {
   }
 
   // Create cascaded pid controller
-  BasicPidCascaded controller;
+  controllers_2d::BasicPidCascaded controller;
   controller.set_gains(paths::controller_gains_yaml);
   controller.set_quad_properties(paths::quad_yaml);
   logger.log_info("Initialized Controller");
@@ -76,8 +76,7 @@ int main() {
           mocap_sub::position, mocap_sub::orientation_euler, target.position());
 
       // Convert thrust, torque to motor speeds
-      motor_commands =
-          mixer.motor_mixer(thrust_torque_cmd(0), thrust_torque_cmd(1));
+      motor_commands = mixer.motor_mixer(thrust_torque_cmd);
 
       // Send motor commands to simulator
       msg.index({mocap_sub::index});
@@ -88,9 +87,10 @@ int main() {
 
       // std::cout << "Published motor commands:" << mocap_sub::index << '\n';
 
-      std::cout << "Thrust command:" << thrust_torque_cmd(0) << '\n';
-      std::cout << "Torque commands:" << thrust_torque_cmd(1) << '\t'
-                << thrust_torque_cmd(2) << '\t' << thrust_torque_cmd(3) << '\n';
+      // std::cout << "Thrust command:" << thrust_torque_cmd(0) << '\n';
+      // std::cout << "Torque commands:" << thrust_torque_cmd(1) << '\t'
+      //           << thrust_torque_cmd(2) << '\t' << thrust_torque_cmd(3) <<
+      //           '\n';
       // std::cout << "Position:" << mocap_sub::position[0] << '\t'
       //           << mocap_sub::position[1] << '\t' << mocap_sub::position[2]
       //           << '\n';
