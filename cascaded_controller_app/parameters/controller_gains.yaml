@@ -11,9 +11,6 @@ k_i__y: 0
 k_d__y: 3.0
 
 # Roll controller PID Gains
-# k_p__roll: 3.1
-# k_i__roll: 0
-# k_d__roll: 0.22
 k_p__roll: 3.1
 k_i__roll: 0
 k_d__roll: 0.22
