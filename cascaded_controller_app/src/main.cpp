@@ -33,7 +33,7 @@ int main() {
   }
 
   // Create cascaded pid controller
-  BasicPidCascaded controller;
+  controllers_2d::BasicPidCascaded controller;
   controller.set_gains(paths::controller_gains_yaml);
   controller.set_quad_properties(paths::quad_yaml);
   logger.log_info("Initialized Controller");
