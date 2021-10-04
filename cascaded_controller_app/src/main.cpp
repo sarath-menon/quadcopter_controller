@@ -76,8 +76,6 @@ int main() {
           mocap_sub::position, mocap_sub::orientation_euler, target.position());
 
       // Convert thrust, torque to motor speeds
-      // motor_commands =
-      //     mixer.motor_mixer(thrust_torque_cmd(0), thrust_torque_cmd(1));
       motor_commands = mixer.motor_mixer(thrust_torque_cmd);
 
       // Send motor commands to simulator
