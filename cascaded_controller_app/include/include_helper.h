@@ -17,18 +17,22 @@
 #include "motor_commandsPubSubTypes.h"
 #include "motor_commandsPublisher.h"
 
-// Subscriber callbacks
-#include "mocap_sub_callback.h"
 /////////////////////////////////////////////////////////////////////////////////
 
 // Utilities  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #include "waypoint_setter.h"
 
 // File containing ymal paths
-#include "yaml_paths.h"
+#include "paths.h"
 
 // spdlog headers
 #include "spdlog/sinks/basic_file_sink.h"
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/stdout_sinks.h"
 #include "spdlog/spdlog.h"
+
+// Logger
+#include "logger.h"
+
+// Basic cascaded controller
+#include "basic_pid_cascaded.h"

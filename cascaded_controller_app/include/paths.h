@@ -4,8 +4,9 @@
 #include <vector>
 #include <yaml-cpp/yaml.h>
 
-namespace yaml_paths {
+namespace paths {
 
+// Yaml paths
 std::string quad_yaml =
     "cascaded_controller_app/parameters/quadcopter_parameters.yaml";
 
@@ -22,4 +23,9 @@ std::vector<std::string> files_to_check = {quad_yaml, controller_gains_yaml,
                                            controller_timescales_yaml,
                                            setpoint_yaml};
 
-} // namespace yaml_paths
+// Text file paths
+
+std::string event_log_path = "logs/event_logs/";
+std::string data_log_path = "logs/data_logs/";
+
+} // namespace paths
