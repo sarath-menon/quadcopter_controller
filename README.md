@@ -7,6 +7,17 @@ Quadcopter Controller
 1. yaml-cpp
 2. fastdds 
 
+### Additional package installation for mac os
+
+ ```
+ brew install spdlog
+```
+
+### Additional package installation for linux
+
+ ```
+ sudo apt install libspdlog-dev
+```
 
 ## Installation
 
