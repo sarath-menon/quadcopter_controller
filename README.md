@@ -1,6 +1,6 @@
-# 2d Quad
+# Quadcopter Controller
 
-2D quadcopter simulator with plotting and visualization capabilities
+Quadcopter Controller
 
 ## Prerequisites
 
@@ -12,8 +12,8 @@
 
  1. Download the repository
  ```
- git clone --recursive https://github.com/sarath-menon/2d_quad.git
- cd 2d_quad
+ git clone --recursive https://github.com/sarath-menon/quadcopter_controller.git
+ cd quadcopter_controller
  code .
 ```
 2. Run CMake:Confgure command in VSCode
