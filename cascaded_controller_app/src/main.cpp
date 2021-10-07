@@ -59,9 +59,7 @@ int main() {
   int prev_index = 0;
 
   for (;;) {
-    // for (int i = 0; i < 10; i++) {
 
-    // if (mocap_sub::new_data == true) {
     if (mocap_sub::new_data == true) {
 
       std::cout << "Received pose data:" << mocap_sub::index << '\n';
