@@ -62,15 +62,14 @@ int main() {
 
     if (mocap_sub::new_data == true) {
 
-      std::cout << "Received pose data:" << mocap_sub::index << '\n';
-
       if (mocap_sub::index == 1) {
         session_end_flag = false;
         logger.log_info("Starting session");
       }
 
-      // Set flag to false after data has been received
-      mocap_sub::new_data = false;
+      // logger.log_info("Received pose data");
+      // std::string status_msg = "Received pose data";
+      // safe_cout(status_msg);
 
       // Cascaded controller
       thrust_torque_cmd = controller.cascaded_controller(
@@ -125,6 +124,10 @@ int main() {
       //           << motor_commands[3] << '\t' << std::endl;
 
       // std::cout << std::endl;
+
+      // Set flag to false after data has been processed (lock mutex first)
+      std::unique_lock<std::mutex> lock(mocap_sub::m);
+      mocap_sub::new_data = false;
     }
 
     else if (session_end_flag == false && mocap_sub::matched == 0) {

@@ -83,7 +83,9 @@
         "strstream": "cpp",
         "typeindex": "cpp",
         "condition_variable": "cpp",
-        "*.idl": "cpp"
+        "*.idl": "cpp",
+        "*.ipp": "cpp",
+        "shared_mutex": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
