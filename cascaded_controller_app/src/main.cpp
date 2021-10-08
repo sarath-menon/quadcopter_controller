@@ -125,8 +125,8 @@ int main() {
 
       // std::cout << std::endl;
 
-      // Set flag to false after data has been processed (lock mutex first)
-      std::unique_lock<std::mutex> lock(mocap_sub::m);
+      // Set flag to false after data has been processed
+      std::lock_guard lk(mocap_sub::m);
       mocap_sub::new_data = false;
     }
 
