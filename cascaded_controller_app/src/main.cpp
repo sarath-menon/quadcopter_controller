@@ -28,7 +28,7 @@ int main() {
     else
       throw(motor_command_pub);
   } catch (motor_commandsPublisher motor_command_pub) {
-    logger.log_error("Initialized Mocap subscriber cannot be");
+    logger.log_error("Mocap subscriber cannot be initialized");
     std::exit(EXIT_FAILURE);
   }
 
