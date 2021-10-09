@@ -13,6 +13,7 @@ find_package(spdlog REQUIRED)
 
 include_directories(external/PX4-Matrix)
 include_directories(external/helper)
+include_directories(external/msgs)
 
 add_subdirectory(cascaded_controller_app)
 add_subdirectory(lib)
