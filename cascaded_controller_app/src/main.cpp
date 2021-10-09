@@ -75,6 +75,9 @@ int main() {
   bool session_end_flag = true;
   logger.log_info("Waiting for mocap datastream");
 
+  // msgs::Pose pose_msg;
+  // pose_msg.header.name = "selva";
+
   for (;;) {
 
     // Start controller thread
