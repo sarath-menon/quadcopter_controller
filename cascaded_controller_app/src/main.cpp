@@ -1,3 +1,4 @@
+#include "geometry_msgs/Pose.msg"
 #include "include_helper.h"
 
 // Global variables for now
