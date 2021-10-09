@@ -10,12 +10,11 @@ void controller_thread(controllers_2d::BasicPidCascaded &controller,
   std::unique_lock<std::mutex> lk(mocap_sub::m);
   mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
 
-  // after the wait, controller owns the lock.
-
-  // Set new data flag to false when data received
+  // Proceed when mocap data availablw
+  // First, set new data flag to false
   mocap_sub::new_data = false;
 
-  // Cascaded controller
+  // RUn controller
   matrix::Vector<float, 4> thrust_torque_cmd = controller.cascaded_controller(
       mocap_sub::position, mocap_sub::orientation_euler, target.position());
 
@@ -81,13 +80,13 @@ int main() {
     std::thread ctrl(std::ref(controller_thread), std::ref(controller),
                      std::ref(mixer), std::ref(target));
 
+    // Wait for controller thread to finish
     ctrl.join();
 
-    // Send motor commands to simulator
+    // Publish motor commands
     msg.index({mocap_sub::index});
     msg.motor_commands({motor_commands(0), motor_commands(1), motor_commands(2),
                         motor_commands(3)});
-    // // Publish motor command msg
     motor_command_pub.run(msg);
 
     // if (session_end_flag == false && mocap_sub::matched == 0) {
