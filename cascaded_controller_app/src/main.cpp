@@ -54,20 +54,23 @@ int main() {
 
   // Global variables for now
   matrix::Vector<float, 4> motor_commands;
+  matrix::Vector<float, 4> thrust_torque_cmd;
 
   for (;;) {
 
-    // Wait until subscriber sends mocap pose
-    std::unique_lock<std::mutex> lk(mocap_sub::m);
-    mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
+    // Lock until read and write are completed
 
-    // Reset flag and prroceed when mocap data available
-    mocap_sub::new_data = false;
+    { // Wait until subscriber sends mocap pose
+      std::unique_lock<std::mutex> lk(mocap_sub::m);
+      mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
 
-    // Run controller
-    matrix::Vector<float, 4> thrust_torque_cmd = controller.cascaded_controller(
-        mocap_sub::position, mocap_sub::orientation_euler, target.position());
+      // Reset flag and prroceed when mocap data available
+      mocap_sub::new_data = false;
 
+      // Run controller
+      thrust_torque_cmd = controller.cascaded_controller(
+          mocap_sub::position, mocap_sub::orientation_euler, target.position());
+    }
     // Convert thrust, torque to motor speeds
     motor_commands = mixer.motor_mixer(thrust_torque_cmd);
 
