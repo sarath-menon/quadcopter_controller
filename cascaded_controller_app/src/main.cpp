@@ -1,27 +1,5 @@
 #include "include_helper.h"
 
-// Global variables for now
-matrix::Vector<float, 4> motor_commands;
-
-void controller_thread(controllers_2d::BasicPidCascaded &controller,
-                       QuadcopterMixer &mixer, WaypointSetter &target) {
-
-  // Wait until subscriber sends mocap pose
-  std::unique_lock<std::mutex> lk(mocap_sub::m);
-  mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
-
-  // Proceed when mocap data availablw
-  // First, set new data flag to false
-  mocap_sub::new_data = false;
-
-  // RUn controller
-  matrix::Vector<float, 4> thrust_torque_cmd = controller.cascaded_controller(
-      mocap_sub::position, mocap_sub::orientation_euler, target.position());
-
-  // Convert thrust, torque to motor speeds
-  motor_commands = mixer.motor_mixer(thrust_torque_cmd);
-}
-
 int main() {
 
   // Initialize logger
@@ -74,17 +52,24 @@ int main() {
   bool session_end_flag = true;
   logger.log_info("Waiting for mocap datastream");
 
-  // msgs::Pose pose_msg;
-  // pose_msg.header.name = "selva";
+  // Global variables for now
+  matrix::Vector<float, 4> motor_commands;
 
   for (;;) {
 
-    // Start controller thread
-    std::thread ctrl(std::ref(controller_thread), std::ref(controller),
-                     std::ref(mixer), std::ref(target));
+    // Wait until subscriber sends mocap pose
+    std::unique_lock<std::mutex> lk(mocap_sub::m);
+    mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
 
-    // Wait for controller thread to finish
-    ctrl.join();
+    // Reset flag and prroceed when mocap data available
+    mocap_sub::new_data = false;
+
+    // Run controller
+    matrix::Vector<float, 4> thrust_torque_cmd = controller.cascaded_controller(
+        mocap_sub::position, mocap_sub::orientation_euler, target.position());
+
+    // Convert thrust, torque to motor speeds
+    motor_commands = mixer.motor_mixer(thrust_torque_cmd);
 
     // Publish motor commands
     msg.index(mocap_sub::index);
