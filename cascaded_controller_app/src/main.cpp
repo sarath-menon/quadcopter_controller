@@ -87,7 +87,7 @@ int main() {
     ctrl.join();
 
     // Publish motor commands
-    msg.index({mocap_sub::index});
+    msg.index(mocap_sub::index);
     msg.motor_commands({motor_commands(0), motor_commands(1), motor_commands(2),
                         motor_commands(3)});
     motor_command_pub.run(msg);
