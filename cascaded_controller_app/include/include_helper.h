@@ -35,3 +35,8 @@
 
 // Basic cascaded controller
 #include "basic_pid_cascaded.h"
+
+// Fastdds
+#include "MocapPubSubTypes.h"
+#include "default_publisher.h"
+#include "sensor_msgs/msgs/Mocap.h"

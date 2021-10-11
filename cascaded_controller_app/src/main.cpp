@@ -9,6 +9,13 @@ int main() {
   motor_commandsPublisher motor_command_pub;
   actuator_commands msg;
 
+  // New fastdds
+  // Message
+  msgs::Mocap mocap_msg;
+
+  // Create publisher with msg type
+  DDSPublisher position_pub(MocapPubSubType(), "position");
+
   try {
     if (motor_command_pub.init() == true)
       logger.log_info("Initialized Motor command subscriber");
