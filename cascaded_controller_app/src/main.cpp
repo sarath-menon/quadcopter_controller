@@ -11,10 +11,9 @@ int main() {
 
   // New fastdds
   // Message
-  msgs::Mocap mocap_msg;
-
+  msgs::QuadMotorCommand motor_cmd;
   // Create publisher with msg type
-  DDSPublisher position_pub(MocapPubSubType(), "position");
+  DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands");
 
   try {
     if (motor_command_pub.init() == true)
@@ -86,6 +85,15 @@ int main() {
     msg.motor_commands({motor_commands(0), motor_commands(1), motor_commands(2),
                         motor_commands(3)});
     motor_command_pub.run(msg);
+
+    // New fastdds -> publish motor commands
+    float waste[4];
+    motor_cmd.header.id = "srl_quad";
+    motor_cmd.header.timestamp = mocap_sub::index;
+    motor_cmd.motorspeed[0] = motor_commands(0);
+    // motor_cmd.speed[1] = motor_commands(1);
+    // motor_cmd.speed[2] = motor_commands(2);
+    // motor_cmd.speed[3] = motor_commands(3);
 
     // if (session_end_flag == false && mocap_sub::matched == 0) {
 
