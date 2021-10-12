@@ -46,8 +46,8 @@ int main() {
   logger.log_info("Waiting for mocap datastream");
 
   // Needed in main
-  msgs::QuadMotorCommand motor_cmd;
-  msgs::ThrustTorqueCommand thrust_torque_cmd;
+  msgs::QuadMotorCommand motor_cmd{};
+  msgs::ThrustTorqueCommand thrust_torque_cmd{};
 
   for (;;) {
     // Lock until read and write are completed
