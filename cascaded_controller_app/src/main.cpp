@@ -9,34 +9,26 @@ int main() {
   motor_commandsPublisher motor_command_pub;
   actuator_commands msg;
 
-  // New fastdds
+  // New fastdds publisher
   // Message
   msgs::QuadMotorCommand motor_cmd;
   // Create publisher with msg type
   DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands");
+  motor_cmd_pub.init();
 
-  try {
-    if (motor_command_pub.init() == true)
-      logger.log_info("Initialized Motor command subscriber");
-    else
-      throw(motor_command_pub);
-  } catch (motor_commandsPublisher motor_command_pub) {
-    logger.log_error("Motor command publisher cannot be initialized");
-    std::exit(EXIT_FAILURE);
-  }
+  // New fastdds subscriber
+  DDSSubscriber mocap_sub_new(MocapPubSubType(), "mocap_pose");
+  mocap_sub_new.init();
 
-  // Initialize mocap data subscriber
-  mocap_quadcopterSubscriber mocap_sub;
-
-  try {
-    if (mocap_sub.init() == true)
-      logger.log_info("Initialized Mocap subscriber");
-    else
-      throw(motor_command_pub);
-  } catch (motor_commandsPublisher motor_command_pub) {
-    logger.log_error("Mocap subscriber cannot be initialized");
-    std::exit(EXIT_FAILURE);
-  }
+  // try {
+  //   if (motor_command_pub.init() == true)
+  //     logger.log_info("Initialized Motor command subscriber");
+  //   else
+  //     throw(motor_command_pub);
+  // } catch (motor_commandsPublisher motor_command_pub) {
+  //   logger.log_error("Motor command publisher cannot be initialized");
+  //   std::exit(EXIT_FAILURE);
+  // }
 
   // Create cascaded pid controller
   controllers_2d::BasicPidCascaded controller;
@@ -67,33 +59,33 @@ int main() {
     // Lock until read and write are completed
 
     { // Wait until subscriber sends mocap pose
-      std::unique_lock<std::mutex> lk(mocap_sub::m);
-      mocap_sub::cv.wait(lk, [] { return mocap_sub::new_data; });
 
-      // Reset flag and prroceed when mocap data available
-      mocap_sub::new_data = false;
+      // wait for the subscriber
+      std::unique_lock<std::mutex> lk(mocap_sub_new.listener.m);
+      mocap_sub_new.listener.cv.wait(lk, [] { return sub::new_data_flag; });
+
+      sub::new_data_flag = false;
+
+      sub::st.pose.position.x /= 1000.0;
+      sub::st.pose.position.y /= 1000.0;
+      sub::st.pose.position.z /= 1000.0;
 
       // Run controller
-      thrust_torque_cmd = controller.cascaded_controller(
-          mocap_sub::position, mocap_sub::orientation_euler, target.position());
+      thrust_torque_cmd =
+          controller.cascaded_controller(sub::st.pose, target.position());
     }
+
     // Convert thrust, torque to motor speeds
     motor_commands = mixer.motor_mixer(thrust_torque_cmd);
 
-    // Publish motor commands
-    msg.index(mocap_sub::index);
-    msg.motor_commands({motor_commands(0), motor_commands(1), motor_commands(2),
-                        motor_commands(3)});
-    motor_command_pub.run(msg);
-
     // New fastdds -> publish motor commands
-    float waste[4];
     motor_cmd.header.id = "srl_quad";
-    motor_cmd.header.timestamp = mocap_sub::index;
+    motor_cmd.header.timestamp = sub::st.header.timestamp;
     motor_cmd.motorspeed[0] = motor_commands(0);
-    // motor_cmd.speed[1] = motor_commands(1);
-    // motor_cmd.speed[2] = motor_commands(2);
-    // motor_cmd.speed[3] = motor_commands(3);
+    motor_cmd.motorspeed[1] = motor_commands(1);
+    motor_cmd.motorspeed[2] = motor_commands(2);
+    motor_cmd.motorspeed[3] = motor_commands(3);
+    motor_cmd_pub.publish(motor_cmd);
 
     // if (session_end_flag == false && mocap_sub::matched == 0) {
 
