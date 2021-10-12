@@ -47,8 +47,9 @@ int main() {
 
   // Needed in main
   matrix::Vector<float, 4> motor_commands;
-  matrix::Vector<float, 4> thrust_torque_cmd;
+  // matrix::Vector<float, 4> thrust_torque_cmd;
   msgs::QuadMotorCommand motor_cmd;
+  msgs::ThrustTorqueCommand thrust_torque_cmd;
 
   for (;;) {
     // Lock until read and write are completed
