@@ -5,11 +5,7 @@ int main() {
   // Initialize logger
   Logger logger(paths::event_log_path, paths::data_log_path);
 
-  // New fastdds publisher
-  // Message
-  msgs::QuadMotorCommand motor_cmd;
-  // Create publisher with msg type
-
+  // Create fastdds publisher
   DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands");
   // Initialize publisher with check
   if (motor_cmd_pub.init() == true) {
@@ -49,12 +45,12 @@ int main() {
   // bool session_end_flag = true;
   logger.log_info("Waiting for mocap datastream");
 
-  // Global variables for now
+  // Needed in main
   matrix::Vector<float, 4> motor_commands;
   matrix::Vector<float, 4> thrust_torque_cmd;
+  msgs::QuadMotorCommand motor_cmd;
 
   for (;;) {
-
     // Lock until read and write are completed
 
     { // Wait until subscriber sends mocap pose
