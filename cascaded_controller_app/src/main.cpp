@@ -63,13 +63,13 @@ int main() {
 
       sub::new_data_flag = false;
 
-      sub::st.pose.position.x /= 1000.0;
-      sub::st.pose.position.y /= 1000.0;
-      sub::st.pose.position.z /= 1000.0;
+      sub::msg.pose.position.x /= 1000.0;
+      sub::msg.pose.position.y /= 1000.0;
+      sub::msg.pose.position.z /= 1000.0;
 
       // Run controller
       thrust_torque_cmd =
-          controller.cascaded_controller(sub::st.pose, target.position());
+          controller.cascaded_controller(sub::msg.pose, target.position());
     }
 
     // Convert thrust, torque to motor speeds
@@ -77,7 +77,7 @@ int main() {
 
     // New fastdds -> publish motor commands
     motor_cmd.header.id = "srl_quad";
-    motor_cmd.header.timestamp = sub::st.header.timestamp;
+    motor_cmd.header.timestamp = sub::msg.header.timestamp;
     motor_cmd.motorspeed[0] = motor_commands(0);
     motor_cmd.motorspeed[1] = motor_commands(1);
     motor_cmd.motorspeed[2] = motor_commands(2);
