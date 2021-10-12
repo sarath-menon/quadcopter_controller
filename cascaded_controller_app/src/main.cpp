@@ -59,8 +59,6 @@ int main() {
     // Lock until read and write are completed
 
     { // Wait until subscriber sends mocap pose
-
-      // wait for the subscriber
       std::unique_lock<std::mutex> lk(mocap_sub_new.listener.m);
       mocap_sub_new.listener.cv.wait(lk, [] { return sub::new_data_flag; });
 
@@ -87,7 +85,7 @@ int main() {
     motor_cmd.motorspeed[3] = motor_commands(3);
     motor_cmd_pub.publish(motor_cmd);
 
-    // if (session_end_flag == false && mocap_sub::matched == 0) {
+    // if (mocap_sub_new.listener.matched() == 0) {
 
     //   session_end_flag = true;
     //   logger.shutdown_data_logger();

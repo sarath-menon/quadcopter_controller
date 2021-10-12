@@ -3,10 +3,13 @@
 #include "default_subscriber.h"
 #include "sensor_msgs/msgs/Mocap.h"
 
+// Subscriber data that needs to be accessed in main
 namespace sub {
 msgs::Mocap st;
 bool new_data_flag{false};
 } // namespace sub
+
+// Subscriber callback - gets executed when a sample is received
 
 void DDSSubscriber::SubListener::on_data_available(DataReader *reader) {
   SampleInfo info;
