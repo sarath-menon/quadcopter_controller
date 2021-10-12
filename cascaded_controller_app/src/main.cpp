@@ -61,10 +61,6 @@ int main() {
       // Reset flag when data received
       sub::new_data_flag = false;
 
-      sub::msg.pose.position.x /= 1000.0;
-      sub::msg.pose.position.y /= 1000.0;
-      sub::msg.pose.position.z /= 1000.0;
-
       // Run controller
       thrust_torque_cmd =
           controller.cascaded_controller(sub::msg.pose, target.position());
