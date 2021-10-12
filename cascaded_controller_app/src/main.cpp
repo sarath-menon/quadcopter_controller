@@ -46,8 +46,6 @@ int main() {
   logger.log_info("Waiting for mocap datastream");
 
   // Needed in main
-  matrix::Vector<float, 4> motor_commands;
-  // matrix::Vector<float, 4> thrust_torque_cmd;
   msgs::QuadMotorCommand motor_cmd;
   msgs::ThrustTorqueCommand thrust_torque_cmd;
 
@@ -63,19 +61,15 @@ int main() {
 
       // Run controller
       thrust_torque_cmd =
-          controller.cascaded_controller(sub::msg.pose, target.position());
+          controller.cascaded_controller(sub::msg.pose, target.pose());
     }
 
     // Convert thrust, torque to motor speeds
-    motor_commands = mixer.motor_mixer(thrust_torque_cmd);
+    motor_cmd = mixer.motor_mixer(thrust_torque_cmd);
 
-    // New fastdds -> publish motor commands
+    // Add quad name, timestamp and publish
     motor_cmd.header.id = "srl_quad";
     motor_cmd.header.timestamp = sub::msg.header.timestamp;
-    motor_cmd.motorspeed[0] = motor_commands(0);
-    motor_cmd.motorspeed[1] = motor_commands(1);
-    motor_cmd.motorspeed[2] = motor_commands(2);
-    motor_cmd.motorspeed[3] = motor_commands(3);
     motor_cmd_pub.publish(motor_cmd);
 
     // if (mocap_sub_new.listener.matched() == 0) {
