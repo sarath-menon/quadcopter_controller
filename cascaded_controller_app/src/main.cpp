@@ -5,30 +5,29 @@ int main() {
   // Initialize logger
   Logger logger(paths::event_log_path, paths::data_log_path);
 
-  // Initialize motor command publisher
-  motor_commandsPublisher motor_command_pub;
-  actuator_commands msg;
-
   // New fastdds publisher
   // Message
   msgs::QuadMotorCommand motor_cmd;
   // Create publisher with msg type
+
   DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands");
-  motor_cmd_pub.init();
+  // Initialize publisher with check
+  if (motor_cmd_pub.init() == true) {
+    logger.log_info("Initialized Motor command subscriber");
+  } else {
+    logger.log_error("Motor command publisher could be initialized");
+    std::exit(EXIT_FAILURE);
+  }
 
-  // New fastdds subscriber
+  // Create fastdds subscriber
   DDSSubscriber mocap_sub_new(MocapPubSubType(), "mocap_pose");
-  mocap_sub_new.init();
-
-  // try {
-  //   if (motor_command_pub.init() == true)
-  //     logger.log_info("Initialized Motor command subscriber");
-  //   else
-  //     throw(motor_command_pub);
-  // } catch (motor_commandsPublisher motor_command_pub) {
-  //   logger.log_error("Motor command publisher cannot be initialized");
-  //   std::exit(EXIT_FAILURE);
-  // }
+  // Initialize subscriber with check
+  if (mocap_sub_new.init() == true) {
+    logger.log_info("Initialized Mocap subscriber");
+  } else {
+    logger.log_error("Mocap subscriber could be initialized");
+    std::exit(EXIT_FAILURE);
+  }
 
   // Create cascaded pid controller
   controllers_2d::BasicPidCascaded controller;
@@ -47,7 +46,7 @@ int main() {
   target.set_setpoints(paths::setpoint_yaml);
   logger.log_info("Initialized Waypoint setter");
 
-  bool session_end_flag = true;
+  // bool session_end_flag = true;
   logger.log_info("Waiting for mocap datastream");
 
   // Global variables for now
@@ -89,8 +88,8 @@ int main() {
 
     //   session_end_flag = true;
     //   logger.shutdown_data_logger();
-    //   logger.log_info("Mocap datastreastream has closed. Data log saved");
-    //   logger.log_info("Waiting for new mocap datastream");
+    //   logger.log_info("Mocap datastreastream has closed. Data log
+    //   saved"); logger.log_info("Waiting for new mocap datastream");
     // }
   }
 }

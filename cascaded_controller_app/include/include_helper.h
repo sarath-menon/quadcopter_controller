@@ -7,18 +7,7 @@
 #include <math.h>
 #include <math_helper.h>
 
-// Fastdds  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// Mocap data subscriber
-#include "mocap_quadcopterPubSubTypes.h"
-#include "mocap_quadcopterSubscriber.h"
-// Motor commands publisher
-#include "motor_commandsPubSubTypes.h"
-#include "motor_commandsPublisher.h"
-
-/////////////////////////////////////////////////////////////////////////////////
-
-// Utilities  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Utilities
 #include "waypoint_setter.h"
 
 // File containing ymal paths
