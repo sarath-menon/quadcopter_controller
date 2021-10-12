@@ -57,6 +57,7 @@ int main() {
       std::unique_lock<std::mutex> lk(mocap_sub_new.listener.m);
       mocap_sub_new.listener.cv.wait(lk, [] { return sub::new_data_flag; });
 
+      // Reset flag when data received
       sub::new_data_flag = false;
 
       sub::msg.pose.position.x /= 1000.0;
