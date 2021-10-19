@@ -5,8 +5,13 @@ int main() {
   // Initialize logger
   Logger logger(paths::event_log_path, paths::data_log_path);
 
+  // Create participant. Argument-> Domain id, QOS name
+  DefaultParticipant dp(0, "quadcopter_controller_qos");
+
   // Create fastdds publisher
-  DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands");
+  DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands",
+                             dp.participant());
+
   // Initialize publisher with check
   if (motor_cmd_pub.init() == true) {
     logger.log_info("Initialized Motor command subscriber");
@@ -16,7 +21,8 @@ int main() {
   }
 
   // Create fastdds subscriber
-  DDSSubscriber mocap_sub_new(MocapPubSubType(), "mocap_pose");
+  DDSSubscriber mocap_sub_new(MocapPubSubType(), "mocap_pose",
+                              dp.participant());
   // Initialize subscriber with check
   if (mocap_sub_new.init() == true) {
     logger.log_info("Initialized Mocap subscriber");

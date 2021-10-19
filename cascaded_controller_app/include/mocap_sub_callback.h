@@ -10,8 +10,9 @@ bool new_data_flag{false};
 } // namespace sub
 
 // Subscriber callback - gets executed when a sample is received
-inline void DDSSubscriber::SubListener::on_data_available(DataReader *reader) {
-  SampleInfo info;
+inline void DDSSubscriber::SubListener::on_data_available(
+    eprosima::fastdds::dds::DataReader *reader) {
+  eprosima::fastdds::dds::SampleInfo info;
 
   if (reader->take_next_sample(&sub::msg, &info) == ReturnCode_t::RETCODE_OK) {
     if (info.valid_data) {

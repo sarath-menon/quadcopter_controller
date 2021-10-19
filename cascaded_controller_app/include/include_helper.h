@@ -27,6 +27,7 @@
 
 // Fastdds
 #include "QuadMotorCommandPubSubTypes.h"
+#include "default_participant.h"
 #include "default_publisher.h"
 #include "mocap_sub_callback.h"
 #include "quadcopter_msgs/msgs/QuadMotorCommand.h"
