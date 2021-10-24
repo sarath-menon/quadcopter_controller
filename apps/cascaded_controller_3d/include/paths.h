@@ -7,16 +7,17 @@
 namespace paths {
 
 // Yaml paths
-std::string quad_yaml =
-    "cascaded_controller_app/parameters/quadcopter_parameters.yaml";
 
-std::string controller_gains_yaml =
-    "cascaded_controller_app/parameters/controller_gains.yaml";
+std::string folder_path = "apps/cascaded_controller_3d/parameters/";
+
+std::string quad_yaml = folder_path + "quadcopter_parameters.yaml";
+
+std::string controller_gains_yaml = folder_path + "controller_gains.yaml";
 
 std::string controller_timescales_yaml =
-    "cascaded_controller_app/parameters/controller_timescales.yaml";
+    folder_path + "controller_timescales.yaml";
 
-std::string setpoint_yaml = "cascaded_controller_app/parameters/setpoint.yaml";
+std::string setpoint_yaml = folder_path + "setpoint.yaml";
 
 // Vector of yaml files for safety check
 std::vector<std::string> files_to_check = {quad_yaml, controller_gains_yaml,

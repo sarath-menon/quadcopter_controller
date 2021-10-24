@@ -1,0 +1,23 @@
+# Set position setpoints
+
+#Position
+x: true
+y: true
+z: true
+
+#Orientation
+roll: true
+pitch: true
+yaw: true
+
+#Thrust, torques
+net_thrust: true
+torque_x: true
+torque_y: true
+torque_z: true
+
+#Motor commands
+motor_0_command: true
+motor_1_command: true
+motor_2_command: true
+motor_3_command: true

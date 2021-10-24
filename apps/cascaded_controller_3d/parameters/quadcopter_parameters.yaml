@@ -1,0 +1,19 @@
+# General Rigid Body Parameters:
+
+# Geometrical properties
+arm_length: 0.171
+
+# Maximum thrust can be produced by the motors
+motor_thrust_max: 6.25
+
+# Maximum thrust can be produced by the motors
+motor_thrust_min: 1.75
+
+# Relation btw square of motor speed and motor thrust
+k_f: 6.11e-8
+
+# Relation btw square of motor speed and yaw torque
+k_t: 1.5e-9
+
+# Maximum roll angle
+roll_angle_max: 10
