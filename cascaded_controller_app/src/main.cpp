@@ -21,10 +21,10 @@ int main() {
   }
 
   // Create fastdds subscriber
-  DDSSubscriber mocap_sub_new(idl_msg::MocapPubSubType(), "mocap_pose",
-                              dp.participant());
+  DDSSubscriber mocap_sub(idl_msg::MocapPubSubType(), "mocap_pose",
+                          dp.participant());
   // Initialize subscriber with check
-  if (mocap_sub_new.init() == true) {
+  if (mocap_sub.init() == true) {
     logger.log_info("Initialized Mocap subscriber");
   } else {
     logger.log_error("Mocap subscriber could be initialized");
@@ -59,15 +59,15 @@ int main() {
     // Lock until read and write are completed
 
     { // Wait until subscriber sends mocap pose
-      std::unique_lock<std::mutex> lk(mocap_sub_new.listener.m);
-      mocap_sub_new.listener.cv.wait(lk, [] { return sub::new_data_flag; });
+      std::unique_lock<std::mutex> lk(mocap_sub.listener.m);
+      mocap_sub.listener.cv.wait(lk, [] { return sub::new_data_flag; });
 
       // Reset flag when data received
       sub::new_data_flag = false;
 
       // Run controller
       thrust_torque_cmd =
-          controller.cascaded_controller(sub::msg.pose, target.pose());
+          controller.cascaded_controller(sub::mocap_msg.pose, target.pose());
     }
 
     // Convert thrust, torque to motor speeds
@@ -75,10 +75,10 @@ int main() {
 
     // Add quad name, timestamp and publish
     motor_cmd.header.id = "srl_quad";
-    motor_cmd.header.timestamp = sub::msg.header.timestamp;
+    motor_cmd.header.timestamp = sub::mocap_msg.header.timestamp;
     motor_cmd_pub.publish(motor_cmd);
 
-    // if (mocap_sub_new.listener.matched() == 0) {
+    // if (mocap_sub.listener.matched() == 0) {
 
     //   session_end_flag = true;
     //   logger.shutdown_data_logger();

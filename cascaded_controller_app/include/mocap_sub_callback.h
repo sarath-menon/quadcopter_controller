@@ -5,7 +5,7 @@
 
 // Subscriber data that needs to be accessed in main
 namespace sub {
-cpp_msg::Mocap msg;
+cpp_msg::Mocap mocap_msg;
 bool new_data_flag{false};
 } // namespace sub
 
@@ -14,7 +14,8 @@ inline void DDSSubscriber::SubListener::on_data_available(
     eprosima::fastdds::dds::DataReader *reader) {
   eprosima::fastdds::dds::SampleInfo info;
 
-  if (reader->take_next_sample(&sub::msg, &info) == ReturnCode_t::RETCODE_OK) {
+  if (reader->take_next_sample(&sub::mocap_msg, &info) ==
+      ReturnCode_t::RETCODE_OK) {
     if (info.valid_data) {
       // std::cout << "Sample received, count=" << samples << std::endl;
       {
