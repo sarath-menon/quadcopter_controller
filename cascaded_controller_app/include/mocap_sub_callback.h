@@ -5,7 +5,7 @@
 
 // Subscriber data that needs to be accessed in main
 namespace sub {
-msgs::Mocap msg;
+cpp_msg::Mocap msg;
 bool new_data_flag{false};
 } // namespace sub
 

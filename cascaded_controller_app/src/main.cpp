@@ -9,8 +9,8 @@ int main() {
   DefaultParticipant dp(0, "quadcopter_controller_qos");
 
   // Create fastdds publisher
-  DDSPublisher motor_cmd_pub(QuadMotorCommandPubSubType(), "motor_commands",
-                             dp.participant());
+  DDSPublisher motor_cmd_pub(idl_msg::QuadMotorCommandPubSubType(),
+                             "motor_commands", dp.participant());
 
   // Initialize publisher with check
   if (motor_cmd_pub.init() == true) {
@@ -21,7 +21,7 @@ int main() {
   }
 
   // Create fastdds subscriber
-  DDSSubscriber mocap_sub_new(MocapPubSubType(), "mocap_pose",
+  DDSSubscriber mocap_sub_new(idl_msg::MocapPubSubType(), "mocap_pose",
                               dp.participant());
   // Initialize subscriber with check
   if (mocap_sub_new.init() == true) {
@@ -52,8 +52,8 @@ int main() {
   logger.log_info("Waiting for mocap datastream");
 
   // Needed in main
-  msgs::QuadMotorCommand motor_cmd{};
-  msgs::ThrustTorqueCommand thrust_torque_cmd{};
+  cpp_msg::QuadMotorCommand motor_cmd{};
+  cpp_msg::ThrustTorqueCommand thrust_torque_cmd{};
 
   for (;;) {
     // Lock until read and write are completed
