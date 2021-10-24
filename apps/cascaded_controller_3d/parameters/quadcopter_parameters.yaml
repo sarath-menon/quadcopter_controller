@@ -16,4 +16,4 @@ k_f: 6.11e-8
 k_t: 1.5e-9
 
 # Maximum roll angle
-roll_angle_max: 10
+roll_angle_max: 20
