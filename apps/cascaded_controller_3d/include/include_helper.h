@@ -32,3 +32,4 @@
 #include "mocap_sub_callback.h"
 #include "quadcopter_msgs/msgs/QuadMotorCommand.h"
 #include "quadcopter_msgs/msgs/ThrustTorqueCommand.h"
+#include "reference_sub_callback.h"

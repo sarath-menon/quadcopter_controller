@@ -31,6 +31,19 @@ int main() {
     std::exit(EXIT_FAILURE);
   }
 
+  // Create subscriber with msg type
+  DDSSubscriber cmd_sub(idl_msg::QuadPositionCmdPubSubType(), "pos_cmd",
+                        dp.participant());
+
+  // Initialize subscriber
+  if (cmd_sub.init() == true) {
+    logger.log_info("Initialized Reference command subscriber");
+  } else {
+    logger.log_error("Reference command subscriber could be initialized");
+    std::exit(EXIT_FAILURE);
+  }
+  // Intiailize fastdds subscriber
+
   // Create cascaded pid controller
   controllers_3d::BasicPidCascaded controller;
   controller.set_gains(paths::controller_gains_yaml);
@@ -56,7 +69,8 @@ int main() {
   cpp_msg::ThrustTorqueCommand thrust_torque_cmd{};
 
   for (;;) {
-    // Lock until read and write are completed
+    // // Wait until new reference cmd is available
+    // cmd_sub.listener.wait_for_data();
 
     { // Wait until subscriber sends mocap pose
       std::unique_lock<std::mutex> lk(mocap_sub.listener.m);
@@ -66,8 +80,8 @@ int main() {
       sub::new_data_flag = false;
 
       // Run controller
-      thrust_torque_cmd =
-          controller.cascaded_controller(sub::mocap_msg.pose, target.pose());
+      thrust_torque_cmd = controller.cascaded_controller(sub::mocap_msg.pose,
+                                                         target.pos_setpoint());
     }
 
     // Convert thrust, torque to motor speeds
