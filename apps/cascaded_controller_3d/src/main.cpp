@@ -73,8 +73,8 @@ int main() {
     mocap_sub.listener->wait_for_data();
 
     // Run controller
-    thrust_torque_cmd = controller.cascaded_controller(sub::mocap_msg.pose,
-                                                       target.pos_setpoint());
+    thrust_torque_cmd =
+        controller.cascaded_controller(sub::mocap_msg.pose, sub::pos_cmd);
 
     // Convert thrust, torque to motor speeds
     motor_cmd = mixer.motor_mixer(thrust_torque_cmd);
