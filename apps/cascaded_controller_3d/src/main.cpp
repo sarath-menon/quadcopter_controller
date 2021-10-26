@@ -20,9 +20,9 @@ int main() {
     std::exit(EXIT_FAILURE);
   }
 
-  // Create fastdds subscriber
-  DDSSubscriber mocap_sub(idl_msg::MocapPubSubType(), "mocap_pose",
-                          dp.participant());
+  // Create mocap subscriber
+  DDSSubscriber mocap_sub(idl_msg::MocapPubSubType(), &sub::mocap_msg,
+                          "mocap_pose", dp.participant());
   // Initialize subscriber with check
   if (mocap_sub.init() == true) {
     logger.log_info("Initialized Mocap subscriber");
@@ -31,9 +31,9 @@ int main() {
     std::exit(EXIT_FAILURE);
   }
 
-  // Create subscriber with msg type
-  DDSSubscriber cmd_sub(idl_msg::QuadPositionCmdPubSubType(), "pos_cmd",
-                        dp.participant());
+  // Create reference cmd subscriber
+  DDSSubscriber cmd_sub(idl_msg::QuadPositionCmdPubSubType(), &sub::pos_cmd,
+                        "pos_cmd", dp.participant());
 
   // Initialize subscriber
   if (cmd_sub.init() == true) {
@@ -70,19 +70,11 @@ int main() {
 
   for (;;) {
     // // Wait until new reference cmd is available
-    // cmd_sub.listener.wait_for_data();
+    mocap_sub.listener->wait_for_data();
 
-    { // Wait until subscriber sends mocap pose
-      std::unique_lock<std::mutex> lk(mocap_sub.listener.m);
-      mocap_sub.listener.cv.wait(lk, [] { return sub::new_data_flag; });
-
-      // Reset flag when data received
-      sub::new_data_flag = false;
-
-      // Run controller
-      thrust_torque_cmd = controller.cascaded_controller(sub::mocap_msg.pose,
-                                                         target.pos_setpoint());
-    }
+    // Run controller
+    thrust_torque_cmd = controller.cascaded_controller(sub::mocap_msg.pose,
+                                                       target.pos_setpoint());
 
     // Convert thrust, torque to motor speeds
     motor_cmd = mixer.motor_mixer(thrust_torque_cmd);

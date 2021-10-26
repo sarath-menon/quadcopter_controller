@@ -29,6 +29,7 @@
 #include "QuadMotorCommandPubSubTypes.h"
 #include "default_participant.h"
 #include "default_publisher.h"
+#include "default_subscriber.h"
 #include "mocap_sub_callback.h"
 #include "quadcopter_msgs/msgs/QuadMotorCommand.h"
 #include "quadcopter_msgs/msgs/ThrustTorqueCommand.h"
