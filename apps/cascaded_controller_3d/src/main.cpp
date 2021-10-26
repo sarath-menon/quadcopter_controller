@@ -84,6 +84,12 @@ int main() {
     motor_cmd.header.timestamp = sub::mocap_msg.header.timestamp;
     motor_cmd_pub.publish(motor_cmd);
 
+    // // Print info
+    // std::cout << "Cmd: " << thrust_torque_cmd.thrust << '\t'
+    //           << thrust_torque_cmd.roll_torque << '\t'
+    //           << thrust_torque_cmd.pitch_torque << '\t'
+    //           << thrust_torque_cmd.yaw_torque << std::endl;
+
     // if (mocap_sub.listener.matched() == 0) {
 
     //   session_end_flag = true;

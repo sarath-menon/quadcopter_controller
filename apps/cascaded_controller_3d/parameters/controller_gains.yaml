@@ -10,6 +10,10 @@ k_p__y: 30
 k_i__y: 0
 k_d__y: 15
 
+k_p__x: 30
+k_i__x: 0
+k_d__x: 15
+
 # Roll controller PID Gains
 k_p__roll: 0.035
 k_i__roll: 0.0
