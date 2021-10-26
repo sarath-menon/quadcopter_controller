@@ -4,7 +4,7 @@
 
 // Subscriber data that needs to be accessed in main
 namespace sub {
-cpp_msg::QuadPositionCmd pos_cmd;
+cpp_msg::QuadPositionCmd pos_cmd{};
 } // namespace sub
 
 // inline void DDSSubscriber::SubListener::on_data_available(

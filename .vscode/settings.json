@@ -86,7 +86,19 @@
         "*.idl": "cpp",
         "*.ipp": "cpp",
         "shared_mutex": "cpp",
-        "*.msg": "cpp"
+        "*.msg": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "compare": "cpp",
+        "future": "cpp",
+        "*.tcc": "cpp",
+        "concepts": "cpp",
+        "memory_resource": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
