@@ -84,6 +84,8 @@ int main() {
     motor_cmd.header.timestamp = sub::mocap_msg.header.timestamp;
     motor_cmd_pub.publish(motor_cmd);
 
+    logger.log_data(motor_cmd.motorspeed[0]);
+
     // // Print info
     // std::cout << "Cmd: " << thrust_torque_cmd.thrust << '\t'
     //           << thrust_torque_cmd.roll_torque << '\t'
