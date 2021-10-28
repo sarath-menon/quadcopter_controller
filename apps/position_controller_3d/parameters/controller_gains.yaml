@@ -1,0 +1,18 @@
+# Controller Parameters:
+
+# Altitude PID Gains
+k_p__z: 7
+k_i__z: 0
+k_d__z: 3.0
+
+# Translation PID Gains
+k_p__y: 30
+k_i__y: 0
+k_d__y: 15
+
+k_p__x: 30
+k_i__x: 0
+k_d__x: 15
+
+# Simulation timestep
+dt: 0.01

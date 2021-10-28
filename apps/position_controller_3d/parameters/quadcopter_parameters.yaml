@@ -15,5 +15,6 @@ k_f: 6.11e-8
 # Relation btw square of motor speed and yaw torque
 k_t: 1.5e-9
 
-# Maximum roll angle
-roll_angle_max: 0.5
+# Maximum roll,pitch angles
+roll_angle_max: 20
+pitch_angle_max: 20

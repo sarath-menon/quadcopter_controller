@@ -8,7 +8,7 @@ namespace paths {
 
 // Yaml paths
 
-std::string folder_path = "apps/cascaded_controller_2d/parameters/";
+std::string folder_path = "apps/cascaded_controller_3d/parameters/";
 
 std::string quad_yaml = folder_path + "quadcopter_parameters.yaml";
 

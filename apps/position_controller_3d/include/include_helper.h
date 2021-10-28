@@ -23,12 +23,13 @@
 #include "logger.h"
 
 // Basic cascaded controller
-#include "basic_pid_cascaded.h"
+#include "pid_position.h"
 
 // Fastdds
-#include "QuadMotorCommandPubSubTypes.h"
+#include "AttitudeCommandPubSubTypes.h"
 #include "default_participant.h"
 #include "default_publisher.h"
+#include "default_subscriber.h"
 #include "mocap_sub_callback.h"
-#include "quadcopter_msgs/msgs/QuadMotorCommand.h"
-#include "quadcopter_msgs/msgs/ThrustTorqueCommand.h"
+#include "quadcopter_msgs/msgs/AttitudeCommand.h"
+#include "reference_sub_callback.h"
