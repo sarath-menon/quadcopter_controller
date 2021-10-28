@@ -1,3 +1,4 @@
 add_subdirectory(utilities_lib)
 add_subdirectory(controller_lib)
 add_subdirectory(communication_lib)
+add_subdirectory(helper_lib)

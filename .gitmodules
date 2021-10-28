@@ -13,3 +13,6 @@
 [submodule "lib/communication_lib"]
 	path = lib/communication_lib
 	url = https://github.com/sarath-menon/communication_lib.git
+[submodule "lib/helper_lib"]
+	path = lib/helper_lib
+	url = https://github.com/sarath-menon/helper_lib.git
