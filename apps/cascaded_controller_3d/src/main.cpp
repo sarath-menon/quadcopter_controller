@@ -46,19 +46,19 @@ int main() {
 
   // Create cascaded pid controller
   controllers_3d::BasicPidCascaded controller;
-  controller.set_gains(paths::controller_gains_yaml);
-  controller.set_quad_properties(paths::quad_yaml);
+  controller.set_gains(paths::controller_gains);
+  controller.set_quad_properties(paths::quad);
   logger.log_info("Initialized Controller");
 
   // Create quadcopter mixer
   QuadcopterMixer mixer;
   // Set quadcopter parameters in mixer
-  mixer.set_quad_properties(paths::quad_yaml);
+  mixer.set_quad_properties(paths::quad);
   logger.log_info("Initialized Mixer");
 
   // Create waypointsetter
   WaypointSetter target;
-  target.set_setpoints(paths::setpoint_yaml);
+  target.set_setpoints(paths::setpoint);
   logger.log_info("Initialized Waypoint setter");
 
   // bool session_end_flag = true;
