@@ -1,4 +1,5 @@
-# General Rigid Body Parameters:
+# Quadcopter type
+type: x
 
 # Geometrical properties
 arm_length: 0.25
