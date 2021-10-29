@@ -14,7 +14,7 @@ int main() {
 
   // Initialize publisher with check
   if (motor_cmd_pub.init() == true) {
-    logger.log_info("Initialized Motor command subscriber");
+    logger.log_info("Initialized Motor command publisher");
   } else {
     logger.log_error("Motor command publisher could be initialized");
     std::exit(EXIT_FAILURE);
